@@ -11,6 +11,13 @@ import { SocialLoginModule, AuthServiceConfig } from 'angular-6-social-login';
 // Screens
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
+// Material 
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 export function socialConfigs() {
   const config = new AuthServiceConfig(
@@ -32,12 +39,18 @@ export function socialConfigs() {
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    //Material Imports
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [
     AuthService,
