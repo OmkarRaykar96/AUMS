@@ -20,4 +20,5 @@ public class Employee {
 	private String empLocation;
 	private Blob empImage;
 	private String role;
+	
 }

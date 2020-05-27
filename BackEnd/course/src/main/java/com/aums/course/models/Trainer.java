@@ -12,6 +12,5 @@ import lombok.Setter;
 public class Trainer extends Employee {
 
 	private int trainerId;
-	private String activeFlag;
 
 }

@@ -1,6 +1,8 @@
 package com.aums.course.rowmapper;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import com.aums.course.constants.AttributeMapper;
 import com.aums.course.models.Employee;
 
 public class LoginRowMapper {
@@ -13,12 +15,12 @@ public class LoginRowMapper {
 
 		Employee model = new Employee();
 
-		model.setEmpId(rs.getInt("emp_id"));
-		model.setEmpEmail(rs.getString("emp_email_id"));
-		model.setEmpName(rs.getString("emp_name"));
-		model.setEmpDesignation(rs.getString("emp_designation"));
-		model.setEmpLocation(rs.getString("emp_location"));
-		model.setEmpImage(rs.getBlob("emp_img"));
+		model.setEmpId(rs.getInt(AttributeMapper.EMP_ID));
+		model.setEmpEmail(rs.getString(AttributeMapper.EMP_EMAIL_ID));
+		model.setEmpName(rs.getString(AttributeMapper.EMP_NAME));
+		model.setEmpDesignation(rs.getString(AttributeMapper.EMP_DESIGNATION));
+		model.setEmpLocation(rs.getString(AttributeMapper.EMP_LOCATION));
+		model.setEmpImage(rs.getBlob(AttributeMapper.EMP_IMG));
 
 		return model;
 		

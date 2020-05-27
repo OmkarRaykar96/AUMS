@@ -13,11 +13,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TrainingMaterial {
-
+	
 	private int materialId;
 	private Blob file;
 	private String fileName;
 	private String fileType;
-	private String activeFlag;
 	
 }

@@ -21,7 +21,15 @@ public class CourseDao {
 	}
 	
 	public Course getCourseById(int id) {
-		return jdbcTemplate.queryForObject(Queries.GET_COURSE_BY_ID,CourseRowMapper.CourseRowMapperLambda, id);
+		return jdbcTemplate.queryForObject(Queries.GET_COURSE_BY_ID,CourseRowMapper.CourseRowMapperLambda,id);
+	}
+	
+	public List<Course> getCourseForAdmin(int id) {
+		return jdbcTemplate.query(Queries.GET_COURSES_FOR_ADMIN,CourseRowMapper.CourseRowMapperLambda, id);
+	}
+	
+	public List<Course> getCourseForTrainer(int id) {
+		return jdbcTemplate.query(Queries.GET_COURSES_FOR_TRAINER,CourseRowMapper.CourseRowMapperLambda, id);
 	}
 	
 	public void updateCourse(Course course) {

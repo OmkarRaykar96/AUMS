@@ -1,30 +1,41 @@
 package com.aums.course.queries;
 
+import com.aums.course.constants.AttributeMapper;
+
 public class Queries {
 	
+	private Queries () {
+		
+	}
+	
 	// Login
-	public static final String VALIDATE_LOGIN = "SELECT * FROM employee where emp_email_id=?";
-	public static final String CHECK_ADMIN = "SELECT COUNT(admin_id) FROM system_admin where admin_id=?";
-	public static final String CHECK_TRAINER = "SELECT COUNT(trainer_id) FROM trainer where trainer_id=? and active_flag='Y'";
+	public static final String VALIDATE_LOGIN = "SELECT * FROM " + AttributeMapper.EMPLOYEE + " WHERE " + AttributeMapper.EMP_EMAIL_ID + "=?";
+	public static final String CHECK_ADMIN = "SELECT COUNT(" + AttributeMapper.ADMIN_ID + ") FROM " + AttributeMapper.ADMIN + " WHERE " + AttributeMapper.ADMIN_ID + "=?";
+	public static final String CHECK_TRAINER = "SELECT COUNT(" + AttributeMapper.TRAINER_ID + ") FROM " + AttributeMapper.TRAINER + " WHERE " + AttributeMapper.TRAINER_ID + "=? AND " + AttributeMapper.TRAINER_ACTIVE_FLAG + "='Y'";
 	
 	// Course
-	public static final String GET_ALL_COURSES = "SELECT * from course where course_active_flag='Y'";
-	public static final String GET_COURSE_BY_ID = "SELECT * from course where course_id=?";
-	public static final String UPDATE_COURSE = "UPDATE course set course_description=?, course_location=?, course_name=?, course_prerequisites=?, course_skills=?, course_active_flag='Y' where course_id=?";
-	public static final String DELETE_COURSE = "UPDATE course set course_active_flag='N' where course_id=?";
-	public static final String ADD_COURSE = "INSERT INTO course (course_description,course_location,course_name,course_prerequisites,course_skills,course_admin_id,course_active_flag)VALUES(?,?,?,?,?,?,'Y')";
+	public static final String GET_ALL_COURSES = "SELECT * FROM " + AttributeMapper.COURSE + " WHERE " + AttributeMapper.COURSE_ACTIVE_FLAG + "='Y'";
+	public static final String GET_COURSE_BY_ID = "SELECT * FROM " + AttributeMapper.COURSE + " WHERE " + AttributeMapper.COURSE_ID + "=?";
+	
+	public static final String GET_COURSES_FOR_ADMIN = "SELECT * FROM " + AttributeMapper.COURSE + " WHERE " + AttributeMapper.COURSE_ADMIN_ID + "=? AND " + AttributeMapper.COURSE_ACTIVE_FLAG + "='Y'";
+	public static final String GET_COURSES_FOR_TRAINER = "SELECT * FROM " + AttributeMapper.COURSE + " JOIN " + AttributeMapper.TRAINING + " ON " + AttributeMapper.COURSE + "." + AttributeMapper.COURSE_ID + " = " + AttributeMapper.TRAINING + "." + AttributeMapper.TRAINING_COURSE_ID + " AND " + AttributeMapper.TRAINING + "." + AttributeMapper.TRAINING_ID + " = ?";
+	
+	public static final String UPDATE_COURSE = "UPDATE " + AttributeMapper.COURSE_DESCRIPTION + " set " + AttributeMapper.COURSE_ID + "=?, " + AttributeMapper.COURSE_LOCATION + "=?, " + AttributeMapper.COURSE_NAME + "=?, " + AttributeMapper.COURSE_PREREQUISITES + "=?, " + AttributeMapper.COURSE_SKILLS + "=?, " + AttributeMapper.COURSE_ACTIVE_FLAG + "='Y' WHERE " + AttributeMapper.COURSE_ID + "=?";
+	public static final String DELETE_COURSE = "UPDATE " + AttributeMapper.COURSE + " set " + AttributeMapper.COURSE_ACTIVE_FLAG+ "='N' WHERE " + AttributeMapper.COURSE_ID + "=?";
+	public static final String ADD_COURSE = "INSERT INTO " + AttributeMapper.COURSE + " (" + AttributeMapper.COURSE_DESCRIPTION + "," + AttributeMapper.COURSE_NAME + "," + AttributeMapper.COURSE_NAME + "," + AttributeMapper.COURSE_PREREQUISITES + "," + AttributeMapper.COURSE_SKILLS + "," + AttributeMapper.COURSE_ADMIN_ID + "," + AttributeMapper.COURSE_ACTIVE_FLAG + ")VALUES(?,?,?,?,?,?,'Y')";
 	
 	// Trainer
-	public static final String ASSIGN_TRAINER = "";
-	public static final String UNASSIGN_TRAINER = "";
-	public static final String GET_TRAINERS_BY_COURSE = "";
-	public static final String GET_COURSES_BY_TRAINER = "";
+	public static final String ADD_UPDATE_TRAINER = "INSERT INTO " + AttributeMapper.TRAINER + " (" + AttributeMapper.TRAINER_ID + ", " + AttributeMapper.TRAINER_ACTIVE_FLAG + ") VALUES(?, 'Y') ON DUPLICATE KEY UPDATE " + AttributeMapper.TRAINER_ACTIVE_FLAG + "='Y'";
+	public static final String ASSIGN_TRAINER = "INSERT INTO " + AttributeMapper.TRAINING + " (" + AttributeMapper.TRAINING_COURSE_ID + "," + AttributeMapper.TRAINING_TRAINER_ID + "," + AttributeMapper.TRAINING_ACTIVE_FLAG + ") values(?,?,'Y')";
+	public static final String UNASSIGN_TRAINER = "UPDATE " + AttributeMapper.TRAINING + " set " + AttributeMapper.TRAINING_ACTIVE_FLAG + "='N' WHERE " + AttributeMapper.TRAINING_COURSE_ID + "=? AND " + AttributeMapper.TRAINING_TRAINER_ID + "=?";
+	public static final String GET_TRAINERS_BY_COURSE = "SELECT e.* FROM " + AttributeMapper.EMPLOYEE + " e JOIN " + AttributeMapper.TRAINING + " t WHERE t." + AttributeMapper.TRAINING_COURSE_ID + "=? AND e." + AttributeMapper.EMP_ID + "=t." + AttributeMapper.TRAINING_TRAINER_ID+"";
+	public static final String VALIDATE_TRAINER = "SELECT COUNT(" + AttributeMapper.TRAINING_ID + ") FROM " + AttributeMapper.TRAINING + " WHERE " + AttributeMapper.TRAINING_TRAINER_ID + "=? AND " + AttributeMapper.TRAINER_ACTIVE_FLAG + "='Y'";
+	public static final String  UPDATE_TRAINER_STATUS = "UPDATE " + AttributeMapper.TRAINER + " set " + AttributeMapper.TRAINER_ACTIVE_FLAG + "='N' WHERE " + AttributeMapper.TRAINER_ID + "=?";
 	
 	// Training Material
-	public static final String ADD_FILES_BY_TRAINING = "";
-	public static final String DELETE_FILES_BY_TRAINING = "";
-	public static final String GET_FILES_BY_COURSE = "";
-	
-	
+	public static final String GET_TRAINING_ID = "SELECT " + AttributeMapper.TRAINING_ID + " FROM " + AttributeMapper.TRAINING + " WHERE " + AttributeMapper.TRAINING_COURSE_ID + "=? AND " + AttributeMapper.TRAINING_TRAINER_ID + "=?";
+	public static final String ADD_FILES_BY_TRAINING = "INSERT INTO " + AttributeMapper.MATERIAL + " (" + AttributeMapper.MATERIAL_ID + ", " + AttributeMapper.MATERIAL_FILE + ", " + AttributeMapper.MATERIAL_FILE_NAME + ", " + AttributeMapper.MATERIAL_FILE_TYPE + ", " + AttributeMapper.MATERIAL_ACTIVE_FLAG + ")values(?,?,?,?,'Y')";
+	public static final String DELETE_FILES_BY_TRAINING = "UPDATE " + AttributeMapper.MATERIAL + " set " + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='N' WHERE " + AttributeMapper.MATERIAL_ID + "=?";
+	public static final String GET_FILES_BY_TRAINING = "SELECT * FROM " + AttributeMapper.MATERIAL + " WHERE " + AttributeMapper.MATERIAL_ID + "=? AND " + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='Y'";
 	
 }

@@ -1,6 +1,8 @@
 package com.aums.course.rowmapper;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import com.aums.course.constants.AttributeMapper;
 import com.aums.course.models.Course;
 
 public class CourseRowMapper {
@@ -13,13 +15,13 @@ public class CourseRowMapper {
 
 		Course model = new Course();
 
-		model.setCourseId(rs.getInt("course_id"));
-		model.setCourseDescription(rs.getString("course_description"));
-		model.setCourseLocation(rs.getString("course_location"));
-		model.setCourseName(rs.getString("course_name"));
-		model.setCoursePrerequisites(rs.getString("course_prerequisites"));
-		model.setCourseSkills(rs.getString("course_skills"));
-		model.setCourseAdminId(rs.getInt("course_admin_id"));
+		model.setCourseId(rs.getInt(AttributeMapper.COURSE_ID));
+		model.setCourseDescription(rs.getString(AttributeMapper.COURSE_DESCRIPTION));
+		model.setCourseLocation(rs.getString(AttributeMapper.COURSE_LOCATION));
+		model.setCourseName(rs.getString(AttributeMapper.COURSE_NAME));
+		model.setCoursePrerequisites(rs.getString(AttributeMapper.COURSE_PREREQUISITES));
+		model.setCourseSkills(rs.getString(AttributeMapper.COURSE_SKILLS));
+		model.setCourseAdminId(rs.getInt(AttributeMapper.COURSE_ADMIN_ID));
 		
 		return model;
 		

@@ -20,6 +20,7 @@ public class LoginService {
 		
 		emp.setRole( admin && trainer ? "both" : admin ? "admin" : "trainer" );
 		
+		
 		return emp;
 	}
 	

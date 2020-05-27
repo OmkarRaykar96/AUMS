@@ -22,6 +22,14 @@ public class CourseService {
 		return courseDao.getCourseById(id);
 	}
 	
+	public List<Course> getCourseForAdmin(int id) {
+		return courseDao.getCourseForAdmin(id);
+	}
+	
+	public List<Course> getCourseForTrainer(int id) {
+		return courseDao.getCourseForTrainer(id);
+	}
+	
 	public void updateCourse(Course course) {	
 		courseDao.updateCourse(course);
 	}

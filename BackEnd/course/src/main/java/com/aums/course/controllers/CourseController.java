@@ -20,29 +20,39 @@ public class CourseController {
 	@Autowired
 	CourseService courseService;
 	
-	@GetMapping("/getAllCourses")
+	@GetMapping("/all")
 	public List<Course> getAllCourses(){
 		return courseService.getAllCourses();
-	};
+	}
 	
-	@GetMapping("/getCourse/{id}")
-	public Course getCourseById(@PathVariable int id) {
+	@GetMapping("/course/{id}")
+	public Course getCourseById(@PathVariable("id") int id) {
 		return courseService.getCourseById(id);
-	};
+	}
+	
+	@GetMapping("/admin/{id}")
+	public List<Course> getCourseForAdmin(@PathVariable("id") int id) {
+		return courseService.getCourseForAdmin(id);
+	}
+	
+	@GetMapping("/trainer/{id}")
+	public List<Course> getCourseForTrainer(@PathVariable("id") int id) {
+		return courseService.getCourseForTrainer(id);
+	}
 	
 	@PostMapping("/updateCourse")
 	public void updateCourse(@RequestBody Course course){
 		courseService.updateCourse(course);
-	};
+	}
 	
 	@PostMapping("/deleteCourse/{id}")
 	public void deleteCourse(@PathVariable int id){
 		courseService.deleteCourse(id);
-	};
+	}
 	
 	@PostMapping("/addCourse")
 	public void addCourse(@RequestBody Course course){
 		courseService.addCourse(course);
-	};
+	}
 	
 }
