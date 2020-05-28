@@ -18,6 +18,22 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ViewAllCoursesComponent } from './components/view-all-courses/view-all-courses.component';
+import { ManageCoursesComponent } from './components/manage-courses/manage-courses.component';
+import { MyCoursesComponent } from './components/my-courses/my-courses.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { CourseInfoComponent } from './components/course-info/course-info.component';
 
 export function socialConfigs() {
   const config = new AuthServiceConfig(
@@ -40,17 +56,35 @@ export function socialConfigs() {
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ViewAllCoursesComponent,
+    ManageCoursesComponent,
+    MyCoursesComponent,
+    CourseInfoComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    //Material Imports
+
+    // Material Imports
+    MatSidenavModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatDividerModule,
+    MatListModule,
     MatToolbarModule,
-    MatButtonModule,
     MatIconModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSlideToggleModule,
+    MatGridListModule
   ],
   providers: [
     AuthService,

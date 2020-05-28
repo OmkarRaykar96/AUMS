@@ -1,6 +1,14 @@
-<mat-toolbar color="primary">
-    <p class="spacing">Home</p>
-    <p class="spacing">About</p>
-    <p class="spacing">Contact Us</p>
+<mat-toolbar color="primary" class="navbar">
+    <div>Accolite University Management System - Course Management</div>
+    <div *ngIf="true">
+        <a class="links" routerLink="/all-courses">All Courses</a>
+        <a class="links" routerLink="/assigned-courses">My Courses</a>
+        <a class="links" routerLink="/manage-courses">Add/Modify Courses</a>
+    </div>
+    <div>
+        <button mat-icon-button class="logout">
+            <mat-icon (click)="logout()" class="menu">logout</mat-icon>
+        </button>
+    </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
