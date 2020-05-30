@@ -11,7 +11,7 @@ import com.aums.course.queries.Queries;
 import com.aums.course.rowmapper.TrainingRowMapper;
 
 @Repository
-public class TrainingDao {
+public class TrainingDao implements ITrainingDao {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;

@@ -9,7 +9,7 @@ import com.aums.course.queries.Queries;
 import com.aums.course.rowmapper.LoginRowMapper;
 
 @Repository
-public class LoginDao {
+public class LoginDao implements ILoginDao {
 
 	@Autowired
 	public JdbcTemplate jdbcTemplate;

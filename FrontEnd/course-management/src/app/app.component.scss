@@ -21,4 +21,7 @@
     top:5px; //change the value to set it in center
     left:5px; //change the value to set it in center
 }
-
+.row{
+    display: flex;
+    flex-direction: row;
+}

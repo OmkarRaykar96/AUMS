@@ -1,8 +1,79 @@
-<mat-grid-list cols="3" rowHeight="3:2">
+<label id="example-radio-group-label">Select an option: </label>
+<mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="favoriteSeason">
+    <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+        {{season}}
+    </mat-radio-button>
+</mat-radio-group>
+<div>Your favorite season is: {{favoriteSeason}}</div>
+
+<form [formGroup]="addCourseForm" (submit)="addCourse()">
+    <!-- Name -->
+    <div class="form">
+        <div>
+            <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+                <mat-label>Course Name</mat-label>
+                <input matInput #name maxlength="100" placeholder="Eg: Angular 8" formControlName="name">
+                <mat-hint align="end">{{name.value?.length || 0}}/100</mat-hint>
+            </mat-form-field>
+        </div>
+
+
+
+        <div>
+            <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+                <mat-label>Description</mat-label>
+                <input matInput #desc maxlength="100" placeholder="Eg: Building Reactive WebApps"
+                    formControlName="description">
+                <mat-hint align="end">{{desc.value?.length || 0}}/100</mat-hint>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+                <mat-label>Prerequsites</mat-label>
+                <input matInput #prereq maxlength="100" placeholder="Eg: HTML,CSS,JS,OOP"
+                    formControlName="prerequisites">
+                <mat-hint align="end">{{prereq.value?.length || 0}}/100</mat-hint>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+                <mat-label>Skills</mat-label>
+                <input matInput #skills maxlength="100" placeholder="Eg: TypeScript,WebDev,FrontEnd"
+                    formControlName="skills">
+                <mat-hint align="end">{{skills.value?.length || 0}}/100</mat-hint>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Select A Location</mat-label>
+                <mat-select formControlName="location">
+                    <mat-option value="Bangalore">Bangalore</mat-option>
+                    <mat-option value="Chennai">Chennai</mat-option>
+                    <mat-option value="Delhi">Delhi</mat-option>
+                    <mat-option value="Gurgaon">Gurgaon</mat-option>
+                    <mat-option value="Hyderabad">Hyderabad</mat-option>
+                    <mat-option value="Mumbai">Mumbai</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <button type="submit" mat-stroked-button color="primary" [disabled]="!addCourseForm.valid">Add
+                Course</button>.
+        </div>
+    </div>
+
+</form>
+
+
+
+<!-- <button mat-icon-button class="bottom-right">
+    <mat-icon color="primary" class="add-button" title="Add a category">add</mat-icon>
+</button> -->
+<!-- <mat-grid-list cols="3" rowHeight="3:2">
     <mat-grid-tile>
         <app-course-info></app-course-info>
     </mat-grid-tile>
     <mat-grid-tile>
         <app-course-info></app-course-info>
     </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->

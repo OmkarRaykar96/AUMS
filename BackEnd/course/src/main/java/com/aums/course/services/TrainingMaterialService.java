@@ -10,7 +10,7 @@ import com.aums.course.dao.TrainingMaterialDao;
 import com.aums.course.models.TrainingMaterial;
 
 @Service
-public class TrainingMaterialService {
+public class TrainingMaterialService implements ITrainingMaterialService {
 
 	@Autowired
 	TrainingMaterialDao trainingMaterialDao;

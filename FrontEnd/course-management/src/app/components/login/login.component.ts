@@ -6,6 +6,10 @@ import { SocialloginService } from '../../providers/login/sociallogin.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
+import { SessionStorage } from 'angular-web-storage';
+import { User } from 'src/app/models/login/user';
+import { SessionStorageService } from 'angular-web-storage';
 const googleLogoURL = 'https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg';
 
 @Component({
@@ -17,18 +21,24 @@ const googleLogoURL = 'https://raw.githubusercontent.com/fireflysemantics/logo/m
 export class LoginComponent implements OnInit {
   response;
   socialusers = new Socialusers();
+
   constructor(
     public OAuth: AuthService,
-    private SocialloginService: SocialloginService,
+    public loginService: SocialloginService,
     private router: Router,
     private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private http: HttpClient,
+    public session: SessionStorageService,
+
   ) {
     this.matIconRegistry.addSvgIcon('logo', this.domSanitizer.bypassSecurityTrustResourceUrl(googleLogoURL));
   }
 
   ngOnInit() {
-
+    if (this.loginService.getLoginStatus()) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   public socialSignIn(socialProvider: string) {
@@ -39,21 +49,20 @@ export class LoginComponent implements OnInit {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     }
     this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
-      console.log(socialProvider, socialusers);
-      this.router.navigate([`/dashboard`]);
-      // this.Savesresponse(socialusers);
+
+      // console.log(socialProvider, socialusers);
+
+      this.http.get('/api/login/validateUser/' + socialusers.email).subscribe((response: User) => {
+        let user = new User();
+
+        user = response;
+        user.empImage = socialusers.image;
+        this.session.set('user', user);
+        console.log('Inside Session', this.session.get('user'));
+        this.session.set('reload', true);
+        this.router.navigate([`/dashboard`]);
+      });
+
     });
   }
-
-  // Savesresponse(socialusers: Socialusers) {
-  //   this.SocialloginService.Savesresponse(socialusers).subscribe((res: any) => {
-  //     debugger;
-  //     console.log(res);
-  //     this.socialusers = res;
-  //     this.response = res.userDetail;
-  //     localStorage.setItem('socialusers', JSON.stringify(this.socialusers));
-  //     console.log(localStorage.setItem('socialusers', JSON.stringify(this.socialusers)));
-
-  //   })
-  // }
 }

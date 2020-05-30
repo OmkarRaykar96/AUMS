@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aums.course.models.Employee;
+import com.aums.course.models.Training;
 import com.aums.course.services.TrainingService;
 
 @RestController
@@ -23,18 +25,19 @@ public class TrainingController {
 		
 	}
 	
-	@PostMapping("/api/assignTrainers/{courseId}/{employeeId}")
-	public void assignTrainers(@PathVariable("courseId") int courseId,@PathVariable("employeeId") int employeeId) {
-		trainingService.assignTrainers(courseId,employeeId);
+	
+	@PostMapping("/assignTrainers/")
+	public void assignTrainers(@RequestBody Training training) {
+		trainingService.assignTrainers(training.getCourseId(),training.getTrainerId());
 	}
 	
-	@PostMapping("/api/unassignTrainers/{courseId}/{trainerId}")
-	public void unassignTrainers(@PathVariable("courseId") int courseId,@PathVariable("trainerId") int trainerId) {
-		trainingService.unassignTrainers(courseId, trainerId);
+	@PostMapping("/unassignTrainers/")
+	public void unassignTrainers(@RequestBody Training training) {
+		trainingService.unassignTrainers(training.getCourseId(),training.getTrainerId());
 	}
 	
-	@GetMapping("api/getTrainersByCourseId/{courseId}") 
-	public List<Employee> getTrainersByCourseId(int courseId) {
+	@GetMapping("/getTrainersByCourseId/{courseId}") 
+	public List<Employee> getTrainersByCourseId(@PathVariable("courseId") int courseId) {
 		return trainingService.getTrainersByCourseId(courseId);
 	}
 	

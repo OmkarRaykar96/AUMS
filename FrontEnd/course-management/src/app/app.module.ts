@@ -7,14 +7,18 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleLoginProvider, FacebookLoginProvider, AuthService } from 'angular-6-social-login';
 import { SocialLoginModule, AuthServiceConfig } from 'angular-6-social-login';
+import { AngularWebStorageModule } from 'angular-web-storage';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Screens
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ViewAllCoursesComponent } from './components/view-all-courses/view-all-courses.component';
+import { CourseInfoComponent } from './components/course-info/course-info.component'
 
-// Material 
+// Material
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -29,11 +33,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ViewAllCoursesComponent } from './components/view-all-courses/view-all-courses.component';
 import { ManageCoursesComponent } from './components/manage-courses/manage-courses.component';
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { CourseInfoComponent } from './components/course-info/course-info.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
 
 export function socialConfigs() {
   const config = new AuthServiceConfig(
@@ -60,13 +67,17 @@ export function socialConfigs() {
     ViewAllCoursesComponent,
     ManageCoursesComponent,
     MyCoursesComponent,
-    CourseInfoComponent
+    CourseInfoComponent,
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularWebStorageModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     // Material Imports
     MatSidenavModule,
@@ -84,7 +95,12 @@ export function socialConfigs() {
     MatDatepickerModule,
     MatNativeDateModule,
     MatSlideToggleModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSnackBarModule,
+    MatRadioModule
   ],
   providers: [
     AuthService,

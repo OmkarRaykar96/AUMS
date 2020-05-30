@@ -9,7 +9,7 @@ import com.aums.course.dao.CourseDao;
 import com.aums.course.models.Course;
 
 @Service
-public class CourseService {
+public class CourseService implements ICourseService {
 
 	@Autowired
 	CourseDao courseDao;

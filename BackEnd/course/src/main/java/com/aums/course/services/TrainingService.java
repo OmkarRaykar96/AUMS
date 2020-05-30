@@ -9,7 +9,7 @@ import com.aums.course.dao.TrainingDao;
 import com.aums.course.models.Employee;
 
 @Service
-public class TrainingService {
+public class TrainingService implements ITrainingService {
 
 	@Autowired
 	TrainingDao trainingDao;
@@ -18,13 +18,13 @@ public class TrainingService {
 		
 	}
 	
-	
 	public void assignTrainers(int courseId, int employeeId) {
 		trainingDao.addOrUpdateTrainer(employeeId);
 		trainingDao.assignTrainers(courseId, employeeId);
 	}
 	
 	public void unassignTrainers(int courseId, int trainerId) {
+		
 		trainingDao.unassignTrainers(courseId, trainerId);
 		if(trainingDao.validateTrainer(trainerId) == 0) {
 			trainingDao.updateTrainerStatus(trainerId);

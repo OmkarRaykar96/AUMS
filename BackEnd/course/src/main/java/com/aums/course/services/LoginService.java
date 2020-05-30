@@ -7,7 +7,7 @@ import com.aums.course.dao.LoginDao;
 import com.aums.course.models.Employee;
 
 @Service
-public class LoginService {
+public class LoginService implements ILoginService {
 
 	@Autowired
 	LoginDao loginDao;

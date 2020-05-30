@@ -13,7 +13,7 @@ import com.aums.course.models.TrainingMaterial;
 import com.aums.course.queries.Queries;
 import com.aums.course.rowmapper.TrainingMaterialRowMapper;
 @Repository
-public class TrainingMaterialDao {
+public class TrainingMaterialDao implements ITrainingMaterialDao {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
