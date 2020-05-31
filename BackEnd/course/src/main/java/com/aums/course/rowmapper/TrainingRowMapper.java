@@ -26,4 +26,15 @@ public class TrainingRowMapper {
 		
 	};
 	
+	public static final RowMapper<Employee> TrainerRowMapperLambda = (rs, rowNum) -> {
+
+		Employee model = new Employee();
+
+		model.setEmpId(rs.getInt(AttributeMapper.EMP_ID));
+		model.setEmpEmail(rs.getString(AttributeMapper.EMP_EMAIL_ID));
+		model.setEmpName(rs.getString(AttributeMapper.EMP_NAME));
+
+		return model;
+	};
+	
 }

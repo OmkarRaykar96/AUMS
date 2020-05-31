@@ -18,19 +18,26 @@ public class TrainingService implements ITrainingService {
 		
 	}
 	
+	@Override
+	public List<Employee> getAllEmployees() {
+		return trainingDao.getAllEmployees();
+	}
+	
+	@Override
 	public void assignTrainers(int courseId, int employeeId) {
 		trainingDao.addOrUpdateTrainer(employeeId);
 		trainingDao.assignTrainers(courseId, employeeId);
 	}
 	
+	@Override
 	public void unassignTrainers(int courseId, int trainerId) {
-		
 		trainingDao.unassignTrainers(courseId, trainerId);
 		if(trainingDao.validateTrainer(trainerId) == 0) {
 			trainingDao.updateTrainerStatus(trainerId);
 		}
 	}
 	
+	@Override
 	public List<Employee> getTrainersByCourseId(int courseId) {
 		return trainingDao.getTrainersByCourseId(courseId);
 	}

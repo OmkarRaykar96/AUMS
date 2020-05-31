@@ -45,9 +45,9 @@ public class CourseController {
 		courseService.updateCourse(course);
 	}
 	
-	@PostMapping("/deleteCourse/{id}")
-	public void deleteCourse(@PathVariable int id){
-		courseService.deleteCourse(id);
+	@PostMapping("/deleteCourse")
+	public void deleteCourse(@RequestBody Course course){
+		courseService.deleteCourse(course.getCourseId());
 	}
 	
 	@PostMapping("/addCourse")

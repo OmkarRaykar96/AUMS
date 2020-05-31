@@ -11,5 +11,7 @@ public interface ITrainingService {
 	public void unassignTrainers(int courseId, int trainerId);
 	
 	public List<Employee> getTrainersByCourseId(int courseId);
+
+	public List<Employee> getAllEmployees();
 	
 }

@@ -25,13 +25,17 @@ public class TrainingController {
 		
 	}
 	
+	@GetMapping("/getAllEmployees")
+	public List<Employee> getAllEmployees(){
+		return trainingService.getAllEmployees();
+	}
 	
-	@PostMapping("/assignTrainers/")
+	@PostMapping("/assignTrainers")
 	public void assignTrainers(@RequestBody Training training) {
 		trainingService.assignTrainers(training.getCourseId(),training.getTrainerId());
 	}
 	
-	@PostMapping("/unassignTrainers/")
+	@PostMapping("/unassignTrainers")
 	public void unassignTrainers(@RequestBody Training training) {
 		trainingService.unassignTrainers(training.getCourseId(),training.getTrainerId());
 	}

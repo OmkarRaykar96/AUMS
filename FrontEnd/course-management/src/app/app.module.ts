@@ -41,6 +41,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 export function socialConfigs() {
   const config = new AuthServiceConfig(
@@ -100,7 +101,8 @@ export function socialConfigs() {
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
-    MatRadioModule
+    MatRadioModule,
+    MatAutocompleteModule
   ],
   providers: [
     AuthService,

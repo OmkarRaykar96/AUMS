@@ -17,5 +17,7 @@ public interface ITrainingDao {
 	public void updateTrainerStatus(int trainerId);
 	
 	public List<Employee> getTrainersByCourseId(int courseId);
+
+	public List<Employee> getAllEmployees();
 	
 }

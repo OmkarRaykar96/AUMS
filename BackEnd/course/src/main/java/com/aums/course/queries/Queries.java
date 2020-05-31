@@ -31,7 +31,7 @@ public class Queries {
 	public static final String ASSIGN_TRAINER = "INSERT INTO " + AttributeMapper.TRAINING + " (" + AttributeMapper.TRAINING_COURSE_ID + "," + AttributeMapper.TRAINING_TRAINER_ID + "," + AttributeMapper.TRAINING_ACTIVE_FLAG + ") values(?,?,'Y')";
 	public static final String UNASSIGN_TRAINER = "UPDATE " + AttributeMapper.TRAINING + " set " + AttributeMapper.TRAINING_ACTIVE_FLAG + "='N' WHERE " + AttributeMapper.TRAINING_COURSE_ID + "=? AND " + AttributeMapper.TRAINING_TRAINER_ID + "=?";
 	
-	public static final String GET_TRAINERS_BY_COURSE = "SELECT e.* FROM " + AttributeMapper.EMPLOYEE +" e, " + AttributeMapper.TRAINING +" t, " + AttributeMapper.TRAINER +" tr where e." + AttributeMapper.EMP_ID +"=t." + AttributeMapper.TRAINING_TRAINER_ID +" and tr." + AttributeMapper.TRAINER_ACTIVE_FLAG +"='Y' and tr." + AttributeMapper.TRAINER_ID +"=t." + AttributeMapper.TRAINING_TRAINER_ID +" and t." + AttributeMapper.TRAINING_COURSE_ID +"=?";
+	public static final String GET_TRAINERS_BY_COURSE = "SELECT e.* FROM " + AttributeMapper.EMPLOYEE +" e, " + AttributeMapper.TRAINING +" t, " + AttributeMapper.TRAINER +" tr where e." + AttributeMapper.EMP_ID +"=t." + AttributeMapper.TRAINING_TRAINER_ID +" and tr." + AttributeMapper.TRAINER_ACTIVE_FLAG +"='Y' and tr." + AttributeMapper.TRAINER_ID +"=t." + AttributeMapper.TRAINING_TRAINER_ID +" and t." + AttributeMapper.TRAINING_COURSE_ID +"=? and "+AttributeMapper.TRAINING_ACTIVE_FLAG+"='Y'";
 	
 	public static final String VALIDATE_TRAINER = "SELECT COUNT(" + AttributeMapper.TRAINING_ID + ") FROM " + AttributeMapper.TRAINING + " WHERE " + AttributeMapper.TRAINING_TRAINER_ID + "=? AND " + AttributeMapper.TRAINING_ACTIVE_FLAG + "='Y'";
 	public static final String  UPDATE_TRAINER_STATUS = "UPDATE " + AttributeMapper.TRAINER + " set " + AttributeMapper.TRAINER_ACTIVE_FLAG + "='N' WHERE " + AttributeMapper.TRAINER_ID + "=?";
@@ -41,5 +41,8 @@ public class Queries {
 	public static final String ADD_FILES_BY_TRAINING = "INSERT INTO " + AttributeMapper.MATERIAL + " (" + AttributeMapper.MATERIAL_ID + ", " + AttributeMapper.MATERIAL_FILE + ", " + AttributeMapper.MATERIAL_FILE_NAME + ", " + AttributeMapper.MATERIAL_FILE_TYPE + ", " + AttributeMapper.MATERIAL_ACTIVE_FLAG + ")values(?,?,?,?,'Y')";
 	public static final String DELETE_FILES_BY_TRAINING = "UPDATE " + AttributeMapper.MATERIAL + " set " + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='N' WHERE " + AttributeMapper.MATERIAL_ID + "=?";
 	public static final String GET_FILES_BY_TRAINING = "SELECT * FROM " + AttributeMapper.MATERIAL + " WHERE " + AttributeMapper.MATERIAL_ID + "=? AND " + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='Y'";
+	
+	// Utility
+	public static final String GET_ALL_EMPLOYEES = "SELECT "+ AttributeMapper.EMP_ID +","+ AttributeMapper.EMP_NAME +","+ AttributeMapper.EMP_EMAIL_ID +" FROM " + AttributeMapper.EMPLOYEE + "";
 	
 }

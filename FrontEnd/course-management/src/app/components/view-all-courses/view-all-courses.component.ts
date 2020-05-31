@@ -15,8 +15,6 @@ export class ViewAllCoursesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'location', 'description', 'prerequisites', 'skills'];
   COURSE_DATA: Course[] = [];
   dataSource: MatTableDataSource<Course>;
-  dataLength;
-
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -33,17 +31,12 @@ export class ViewAllCoursesComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.COURSE_DATA);
       this.dataSource.data = this.COURSE_DATA;
 
-      this.dataLength = response.length;
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
 
       console.log(this.dataSource);
     });
-  }
-
-  onChange(event: Event) {
-    console.log(event);
   }
 
   applyFilter(event: Event) {
