@@ -1,7 +1,5 @@
 package com.aums.course.queries;
 
-import java.security.KeyStore.Entry.Attribute;
-
 import com.aums.course.constants.AttributeMapper;
 
 public class Queries {
@@ -39,7 +37,7 @@ public class Queries {
 	// Training Material
 	public static final String GET_TRAINING_ID = "SELECT " + AttributeMapper.TRAINING_ID + " FROM " + AttributeMapper.TRAINING + " WHERE " + AttributeMapper.TRAINING_COURSE_ID + "=? AND " + AttributeMapper.TRAINING_TRAINER_ID + "=?";
 	public static final String ADD_FILES_BY_TRAINING = "INSERT INTO " + AttributeMapper.MATERIAL + " (" + AttributeMapper.MATERIAL_ID + ", " + AttributeMapper.MATERIAL_FILE + ", " + AttributeMapper.MATERIAL_FILE_NAME + ", " + AttributeMapper.MATERIAL_FILE_TYPE + ", " + AttributeMapper.MATERIAL_ACTIVE_FLAG + ")values(?,?,?,?,'Y')";
-	public static final String DELETE_FILES_BY_TRAINING = "UPDATE " + AttributeMapper.MATERIAL + " set " + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='N' WHERE " + AttributeMapper.MATERIAL_ID + "=?";
+	public static final String DELETE_FILES_BY_TRAINING = "UPDATE " + AttributeMapper.MATERIAL + " set " + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='N' WHERE " + AttributeMapper.MATERIAL_FILE_ID + "=?";
 	public static final String GET_FILES_BY_TRAINING = "SELECT * FROM " + AttributeMapper.MATERIAL + " WHERE " + AttributeMapper.MATERIAL_ID + "=? AND " + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='Y'";
 	
 	// Utility

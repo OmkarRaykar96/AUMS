@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,14 +23,15 @@ public class TrainingMaterialController {
 	@Autowired
 	TrainingMaterialService trainingMaterialService;
 	
-	@PostMapping("/add/{courseId}/{trainerId}")
-	public void addFiles(@RequestParam("filesToSubmit[]") MultipartFile[] filesArr,@PathVariable("courseId") int courseId, @PathVariable("trainerId") int trainerId){
+	@PostMapping("/add")
+	public void addFiles(@RequestParam("files[]") MultipartFile[] filesArr,@RequestParam("courseId") int courseId, @RequestParam("trainerId") int trainerId) throws Exception {
 		trainingMaterialService.addFiles(filesArr, courseId, trainerId);
 	}
 	
-	@PostMapping("/delete/{materialId}")
-	public void deleteFilesByTrainingId(@PathVariable("materialId") int materialId){
-		trainingMaterialService.deleteFile(materialId);
+	@PostMapping("/delete")
+	public void deleteFilesByFileId(@RequestBody int fileId)  {
+		System.out.println("Files to delete"+fileId);
+		trainingMaterialService.deleteFile(fileId);
 	}
 		
 	@GetMapping("/files/{courseId}/{trainerId}")

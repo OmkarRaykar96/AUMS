@@ -205,11 +205,11 @@ export class ManageCoursesComponent implements OnInit {
     for (const itr of this.allEmployees) {
       if (itr.empName === this.myControl.value) {
         trainerId = itr.empId;
+        break;
       }
     }
+
     console.log(trainerId, ' ', this.trainerCourse);
-
-
 
     obj.courseId = this.trainerCourse;
     obj.trainerId = trainerId;

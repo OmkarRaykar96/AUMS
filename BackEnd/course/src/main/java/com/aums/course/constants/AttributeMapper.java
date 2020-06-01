@@ -57,6 +57,7 @@ public class AttributeMapper {
 	public static final String TRAINING_ACTIVE_FLAG = "training_active_flag";
 	
 	//TrainingMaterial
+	public static final String MATERIAL_FILE_ID = "file_id";
 	public static final String MATERIAL_ID = "material_id";
 	public static final String MATERIAL_FILE = "material_file";
 	public static final String MATERIAL_FILE_NAME = "material_file_name";

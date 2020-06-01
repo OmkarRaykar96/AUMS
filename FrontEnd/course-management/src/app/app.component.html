@@ -1,5 +1,7 @@
 <mat-toolbar color="primary" class="navbar">
-    <div>Accolite University Management System - Course Management</div>
+    <div>
+        <a class="links" routerLink="/dashboard">AU Course Management</a>
+    </div>
     <div *ngIf="loggedIn">
         <a class="links" routerLink="/all-courses">All Courses</a>
         <a class="links" routerLink="/assigned-courses">My Courses</a>

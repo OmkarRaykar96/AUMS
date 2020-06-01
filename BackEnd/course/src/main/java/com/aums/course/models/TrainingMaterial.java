@@ -1,8 +1,5 @@
 package com.aums.course.models;
 
-
-import java.sql.Blob;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TrainingMaterial {
 	
+	private int fileId;
 	private int materialId;
-	private Blob file;
+	private byte[] file;
 	private String fileName;
 	private String fileType;
 	

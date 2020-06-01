@@ -7,7 +7,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
-import { SessionStorage } from 'angular-web-storage';
 import { User } from 'src/app/models/login/user';
 import { SessionStorageService } from 'angular-web-storage';
 const googleLogoURL = 'https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg';

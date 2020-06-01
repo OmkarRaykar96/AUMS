@@ -10,13 +10,17 @@ import { SocialLoginModule, AuthServiceConfig } from 'angular-6-social-login';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Directives
+import { DragDropDirective } from './utils/directives/drag-drop.directive';
+
 // Screens
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ViewAllCoursesComponent } from './components/view-all-courses/view-all-courses.component';
-import { CourseInfoComponent } from './components/course-info/course-info.component'
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { ViewDeleteFileComponent } from './components/view-delete-file/view-delete-file.component';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
@@ -42,6 +46,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 export function socialConfigs() {
   const config = new AuthServiceConfig(
@@ -68,8 +74,9 @@ export function socialConfigs() {
     ViewAllCoursesComponent,
     ManageCoursesComponent,
     MyCoursesComponent,
-    CourseInfoComponent,
-
+    UploadFileComponent,
+    DragDropDirective,
+    ViewDeleteFileComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +109,8 @@ export function socialConfigs() {
     MatSortModule,
     MatSnackBarModule,
     MatRadioModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogModule
   ],
   providers: [
     AuthService,
@@ -110,6 +118,10 @@ export function socialConfigs() {
       provide: AuthServiceConfig,
       useFactory: socialConfigs
     }
+  ],
+  entryComponents: [
+    UploadFileComponent,
+    ViewDeleteFileComponent
   ],
   bootstrap: [AppComponent]
 })
