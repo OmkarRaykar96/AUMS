@@ -7,16 +7,11 @@ import { SessionStorageService } from 'angular-web-storage';
 })
 
 export class SocialloginService {
+
   url;
 
-  loggedIn: boolean;
-
   constructor(private http: HttpClient, public session: SessionStorageService) {
-    if (this.session.get('user')) {
-      this.loggedIn = true;
-    } else {
-      this.loggedIn = false;
-    }
+
   }
 
   Savesresponse(responce) {
@@ -24,12 +19,20 @@ export class SocialloginService {
     return this.http.post(this.url, responce);
   }
 
-  setLoginStatus(val: boolean) {
-    this.loggedIn = val;
+  validateUser(email) {
+    return this.http.get('/api/login/validateUser/' + email);
   }
 
+  // setLoginStatus(val: boolean) {
+  //   this.loggedIn = val;
+  // }
+
   getLoginStatus() {
-    return this.loggedIn;
+    if (this.session.get('user') === null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

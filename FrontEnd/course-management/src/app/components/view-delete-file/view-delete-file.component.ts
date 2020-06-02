@@ -23,10 +23,10 @@ export class ViewDeleteFileComponent implements OnInit {
     @Optional() @Inject(MAT_DIALOG_DATA) public data: number) { }
 
   ngOnInit() {
-    this.dialogRef.updateSize('80%', '80%');
+    this.dialogRef.updateSize('30%', '50%');
     this.fileService.getTrainingMaterial(this.data, this.trainerId).subscribe((response: Material[]) => {
       this.unprocessedFiles = response;
-      console.log('Received BLOB ->', this.unprocessedFiles)
+      console.log('Received BLOB ->', this.unprocessedFiles);
     });
   }
 

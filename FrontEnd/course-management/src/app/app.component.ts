@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.session.remove('user');
-    this.loginService.setLoginStatus(false);
     this.loggedIn = this.loginService.getLoginStatus();
     this.OAuth.signOut().then(data => {
       this.router.navigate(['/login']);

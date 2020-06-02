@@ -50,8 +50,7 @@ export class LoginComponent implements OnInit {
     this.OAuth.signIn(socialPlatformProvider).then(socialusers => {
 
       // console.log(socialProvider, socialusers);
-
-      this.http.get('/api/login/validateUser/' + socialusers.email).subscribe((response: User) => {
+      this.loginService.validateUser(socialusers.email).subscribe((response: User) => {
         let user = new User();
 
         user = response;
@@ -61,6 +60,7 @@ export class LoginComponent implements OnInit {
         this.session.set('reload', true);
         this.router.navigate([`/dashboard`]);
       });
+
 
     });
   }

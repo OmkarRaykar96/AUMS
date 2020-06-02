@@ -5,14 +5,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionStorageService } from 'angular-web-storage';
-import { HttpClient } from '@angular/common/http';
 import { Course } from 'src/app/models/course/Course';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { User } from 'src/app/models/login/user';
 import { Training } from 'src/app/models/training/Training';
-
+import { SocialloginService } from '../../providers/login/sociallogin.service';
+import { ManageCourseService } from '../../providers/manage-courses/manage-course.service';
 
 @Component({
   selector: 'app-manage-courses',
@@ -30,12 +30,14 @@ export class ManageCoursesComponent implements OnInit {
   editCourseForm: FormGroup;
   modifyCourseId: number;
 
-  // Dom Manipulations
+  // Screen Control
+  editMode = false;
+  trainerMode = false;
+
+  // DOM Manipulations
   section = 'Add Course';
   sections: string[] = ['Add Course', 'Modify/Delete Course'];
   COURSE_DATA: Course[] = [];
-  editMode = false;
-  trainerMode = false;
   trainers: User[] = [];
   trainerCourse: number;
   allEmployees: User[] = [];
@@ -45,14 +47,16 @@ export class ManageCoursesComponent implements OnInit {
   options: string[];
   filteredOptions: Observable<string[]>;
 
+  // Mat Component Interaction Variables
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     public formBuilder: FormBuilder,
     public session: SessionStorageService,
+    public loginService: SocialloginService,
+    public service: ManageCourseService,
     public router: Router,
-    public http: HttpClient,
     private snackBar: MatSnackBar) {
 
     this.addCourseForm = new FormGroup({
@@ -73,20 +77,17 @@ export class ManageCoursesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('api/course/all').subscribe((response: Course[]) => {
-
-
-      this.COURSE_DATA = response;
-      console.log(this.COURSE_DATA);
-
-      this.dataSource = new MatTableDataSource(this.COURSE_DATA);
-
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-
-      console.log(this.dataSource);
-    });
-
+    if (!this.loginService.getLoginStatus()) {
+      alert('You are not logged in !!!');
+      this.router.navigate(['/login']);
+    } else {
+      this.service.getAllCourses().subscribe((response: Course[]) => {
+        this.COURSE_DATA = response;
+        this.dataSource = new MatTableDataSource(this.COURSE_DATA);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    }
   }
 
   openSnackBar(message: string, action: string) {
@@ -105,13 +106,12 @@ export class ManageCoursesComponent implements OnInit {
     obj.coursePrerequisites = this.addCourseForm.value.prerequisites;
     obj.courseAdminId = this.session.get('user').empId;
 
-    console.log(obj);
-
-    this.http.post('/api/course/addCourse', obj).subscribe((Response) => {
+    this.service.addCourse(obj).subscribe((Response) => {
       console.log(Response);
       this.openSnackBar('Course Added Successfully', 'Done');
       window.location.reload();
     });
+
   }
 
   editCourse() {
@@ -126,15 +126,13 @@ export class ManageCoursesComponent implements OnInit {
     obj.courseAdminId = this.session.get('user').empId;
 
     console.log(obj);
-
-    this.http.post('/api/course/updateCourse', obj).subscribe((Response) => {
+    this.service.editCourse(obj).subscribe((Response) => {
       console.log(Response);
       this.openSnackBar('Course Updated Successfully', 'Done');
       window.location.reload();
     });
 
     this.modifyCourseId = null;
-
   }
 
   addEditTrainerScreen(course: Course) {
@@ -142,18 +140,15 @@ export class ManageCoursesComponent implements OnInit {
     this.editMode = true;
     this.trainerCourse = course.courseId;
 
-    this.http.get('/api/training/getTrainersByCourseId/' + course.courseId).subscribe((response: User[]) => {
+    this.service.addOrEditTrainer(course.courseId).subscribe((response: User[]) => {
       console.log(response);
 
       for (let i = 0; i < response.length; i++) {
         this.trainers.push(response[i]);
       }
-
-      console.log('Trainers', this.trainers);
-
     });
 
-    this.http.get('/api/training/getAllEmployees').subscribe((response: User[]) => {
+    this.service.getAllEmployees().subscribe((response: User[]) => {
       this.options = [];
 
       console.log(response);
@@ -162,13 +157,11 @@ export class ManageCoursesComponent implements OnInit {
         this.options.push(obj.empName);
       }
 
-
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
         map(value => this._filter(value))
       );
     });
-
     console.log(course);
   }
 
@@ -189,12 +182,12 @@ export class ManageCoursesComponent implements OnInit {
 
   deleteCourse(course: Course) {
     console.log('to Be Deleted', course);
-    this.http.post('api/course/deleteCourse', course).subscribe((response) => {
+    this.service.deleteCourse(course).subscribe((response) => {
       this.ngOnInit();
-
       this.section = 'Modify/Delete Course';
       this.openSnackBar('Course Deleted Successfully', 'Done');
     });
+
   }
 
   assignTrainer() {
@@ -214,7 +207,7 @@ export class ManageCoursesComponent implements OnInit {
     obj.courseId = this.trainerCourse;
     obj.trainerId = trainerId;
 
-    this.http.post('/api/training/assignTrainers', obj).subscribe((response) => {
+    this.service.assignTrainer(obj).subscribe((response) => {
       this.openSnackBar('Trainer Assigned Successfully', 'Done');
       this.goBack();
     });
@@ -230,10 +223,12 @@ export class ManageCoursesComponent implements OnInit {
     obj.trainerId = id;
 
     console.log(obj);
-    this.http.post('/api/training/unassignTrainers', obj).subscribe((Response) => {
+
+    this.service.unAssignTrainer(obj).subscribe((response) => {
       this.openSnackBar('Trainer Unassigned Successfully', 'Done');
       this.trainerCourse = null;
     });
+
   }
 
   goBack() {
@@ -241,7 +236,6 @@ export class ManageCoursesComponent implements OnInit {
     this.editMode = false;
     this.trainerCourse = null;
     this.trainers = [];
-
   }
 
   applyFilter(event: Event) {

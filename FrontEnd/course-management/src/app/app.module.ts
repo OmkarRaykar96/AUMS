@@ -9,6 +9,8 @@ import { GoogleLoginProvider, FacebookLoginProvider, AuthService } from 'angular
 import { SocialLoginModule, AuthServiceConfig } from 'angular-6-social-login';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartsModule } from 'ng2-charts';
 
 // Directives
 import { DragDropDirective } from './utils/directives/drag-drop.directive';
@@ -16,11 +18,13 @@ import { DragDropDirective } from './utils/directives/drag-drop.directive';
 // Screens
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ViewAllCoursesComponent } from './components/view-all-courses/view-all-courses.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { ViewDeleteFileComponent } from './components/view-delete-file/view-delete-file.component';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
@@ -47,15 +51,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { SendMailComponent } from './components/send-mail/send-mail.component';
 
 export function socialConfigs() {
   const config = new AuthServiceConfig(
     [
-      {
-        id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider('app -id')
-      },
       {
         id: GoogleLoginProvider.PROVIDER_ID,
         provider: new GoogleLoginProvider('860730154778-932e81kbop40p8s80i60e8sjsb7iusps.apps.googleusercontent.com')
@@ -76,7 +76,11 @@ export function socialConfigs() {
     MyCoursesComponent,
     UploadFileComponent,
     DragDropDirective,
-    ViewDeleteFileComponent
+    ViewDeleteFileComponent,
+    PieChartComponent,
+    LineChartComponent,
+    BarChartComponent,
+    SendMailComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +90,7 @@ export function socialConfigs() {
     AngularWebStorageModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
 
     // Material Imports
     MatSidenavModule,
@@ -121,8 +126,10 @@ export function socialConfigs() {
   ],
   entryComponents: [
     UploadFileComponent,
-    ViewDeleteFileComponent
+    ViewDeleteFileComponent,
+    SendMailComponent
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

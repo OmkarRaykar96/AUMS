@@ -14,8 +14,15 @@ import { SessionStorageService } from 'angular-web-storage';
 export class DashboardComponent implements OnInit {
   socialusers = new Socialusers();
 
-  constructor(public OAuth: AuthService, private router: Router, private session: SessionStorageService) {
-    if (this.session.get('reload')) {
+  constructor(
+    public OAuth: AuthService,
+    private router: Router,
+    private session: SessionStorageService,
+    public loginService: SocialloginService) {
+    if (!this.loginService.getLoginStatus()) {
+      alert('You are not logged in !!!');
+      this.router.navigate(['/login']);
+    } else if (this.session.get('reload')) {
       this.session.set('reload', false);
       window.location.reload();
     }
@@ -24,6 +31,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.socialusers = JSON.parse(localStorage.getItem('socialusers'));
+
+    if (!this.loginService.getLoginStatus()) {
+      this.router.navigate(['/login']);
+    }
+
   }
 
   getImgUrl() {
