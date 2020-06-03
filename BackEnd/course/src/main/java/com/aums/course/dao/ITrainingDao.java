@@ -6,18 +6,20 @@ import com.aums.course.models.Employee;
 
 public interface ITrainingDao {
 
-	public void addOrUpdateTrainer(int employeeId);
+	public String addOrUpdateTrainer(int employeeId);
 	
-	public void assignTrainers(int courseId,int employeeId);
+	public String assignTrainers(int courseId,int employeeId);
 	
-	public void unassignTrainers(int courseId,int trainerId);
+	public String unassignTrainers(int courseId,int trainerId);
 	
 	public int validateTrainer(int trainerId);
 	
-	public void updateTrainerStatus(int trainerId);
+	public String updateTrainerStatus(int trainerId);
 	
 	public List<Employee> getTrainersByCourseId(int courseId);
 
 	public List<Employee> getAllEmployees();
+
+	public String sendMail();
 	
 }

@@ -34,17 +34,18 @@ public class TrainingService implements ITrainingService {
 	}
 	
 	@Override
-	public void assignTrainers(int courseId, int employeeId) {
+	public String assignTrainers(int courseId, int employeeId) {
 		trainingDao.addOrUpdateTrainer(employeeId);
 		trainingDao.assignTrainers(courseId, employeeId);
+		return "Trainer Assigned Successfully!!";
 	}
 	
 	@Override
-	public void unassignTrainers(int courseId, int trainerId) {
-		trainingDao.unassignTrainers(courseId, trainerId);
+	public String unassignTrainers(int courseId, int trainerId) {
 		if(trainingDao.validateTrainer(trainerId) == 0) {
 			trainingDao.updateTrainerStatus(trainerId);
 		}
+		return trainingDao.unassignTrainers(courseId, trainerId);
 	}
 	
 	@Override
@@ -52,7 +53,8 @@ public class TrainingService implements ITrainingService {
 		return trainingDao.getTrainersByCourseId(courseId);
 	}
 
-	public void sendMail(Email obj) throws MessagingException {
+	@Override
+	public String sendMail(Email obj) throws MessagingException {
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			
 			MimeMessageHelper helper = new MimeMessageHelper(msg, true);
@@ -79,7 +81,7 @@ public class TrainingService implements ITrainingService {
 			}
 			
 			javaMailSender.send(msg);
-		
+			return trainingDao.sendMail();
 	}
 	
 }

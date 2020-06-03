@@ -15,11 +15,11 @@ import com.openpojo.validation.test.impl.SetterTester;
  *
  * @author javadevcorner.com
  */
-public class EmployeeTest {
+public class TrainingMaterialTest {
 
     @Test
     public void testGetterSetter() {
-        PojoClass pojoclass = PojoClassFactory.getPojoClass(Employee.class);
+        PojoClass pojoclass = PojoClassFactory.getPojoClass(TrainingMaterial.class);
         Validator validator = ValidatorBuilder
                 .create()
                 .with(new SetterMustExistRule())

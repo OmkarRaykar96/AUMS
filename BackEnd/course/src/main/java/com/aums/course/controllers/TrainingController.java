@@ -1,11 +1,10 @@
 package com.aums.course.controllers;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,13 +34,13 @@ public class TrainingController {
 	}
 	
 	@PostMapping("/assignTrainers")
-	public void assignTrainers(@RequestBody Training training) {
-		trainingService.assignTrainers(training.getCourseId(),training.getTrainerId());
+	public String assignTrainers(@RequestBody Training trainingTest) {
+		return trainingService.assignTrainers(trainingTest.getCourseId(),trainingTest.getTrainerId());
 	}
 	
 	@PostMapping("/unassignTrainers")
-	public void unassignTrainers(@RequestBody Training training) {
-		trainingService.unassignTrainers(training.getCourseId(),training.getTrainerId());
+	public String unassignTrainers(@RequestBody Training trainingTest) {
+		return trainingService.unassignTrainers(trainingTest.getCourseId(),trainingTest.getTrainerId());
 	}
 	
 	@GetMapping("/getTrainersByCourseId/{courseId}") 
@@ -50,8 +49,8 @@ public class TrainingController {
 	}
 	
 	@PostMapping("/sendMail")
-	public void sendMail(@RequestBody Email obj) throws MessagingException {
-		trainingService.sendMail(obj);
+	public String sendMail(@RequestBody Email obj) throws MessagingException {
+		return trainingService.sendMail(obj);
 	}
 }
 

@@ -14,9 +14,9 @@ public interface ICourseService {
 	
 	public List<Course> getCourseForTrainer(int id);
 	
-	public void updateCourse(Course course);
+	public String updateCourse(Course course);
 	
-	public void deleteCourse(int id);
+	public String deleteCourse(int id);
 	
-	public void addCourse(Course course);
+	public String addCourse(Course course);
 }

@@ -22,18 +22,21 @@ public class TrainingDao implements ITrainingDao {
 	}
 	
 	@Override
-	public void addOrUpdateTrainer(int employeeId) {
+	public String addOrUpdateTrainer(int employeeId) {
 		jdbcTemplate.update(Queries.ADD_UPDATE_TRAINER, employeeId);
-	}
-
-	@Override
-	public void assignTrainers(int courseId,int employeeId) {
-		jdbcTemplate.update(Queries.ASSIGN_TRAINER, courseId, employeeId);
+		return "Employee Added/Updated Successfully!!";
 	}
 	
 	@Override
-	public void unassignTrainers(int courseId,int trainerId) {
+	public String assignTrainers(int courseId,int employeeId) {
+		jdbcTemplate.update(Queries.ASSIGN_TRAINER, courseId, employeeId);
+		return "Trainer Assigned Successfully!!";
+	}
+	
+	@Override
+	public String unassignTrainers(int courseId,int trainerId) {
 		jdbcTemplate.update(Queries.UNASSIGN_TRAINER, courseId, trainerId);
+		return "Trainer Unassigned Successfully!!";
 	}
 	
 	@Override
@@ -42,8 +45,9 @@ public class TrainingDao implements ITrainingDao {
 	}
 	
 	@Override
-	public void updateTrainerStatus(int trainerId) {
+	public String updateTrainerStatus(int trainerId) {
 		jdbcTemplate.update(Queries.UPDATE_TRAINER_STATUS, trainerId);
+		return "Trainer Updated!!!";
 	}
 	
 	@Override
@@ -54,6 +58,11 @@ public class TrainingDao implements ITrainingDao {
 	@Override
 	public List<Employee> getAllEmployees() {
 		return jdbcTemplate.query(Queries.GET_ALL_EMPLOYEES, TrainingRowMapper.TrainerRowMapperLambda);
-		}
+	}
+	
+	@Override
+	public String sendMail() {
+		return "Mail Sent Successfully!!";
+	}
 	
 }

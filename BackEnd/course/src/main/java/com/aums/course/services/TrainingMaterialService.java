@@ -25,8 +25,8 @@ public class TrainingMaterialService implements ITrainingMaterialService {
 	}
 	
 	@Override
-	public void deleteFile(int fileId) {
-		trainingMaterialDao.deleteFile(fileId);
+	public String deleteFile(int fileId) {
+		return trainingMaterialDao.deleteFile(fileId);
 	}
 	
 	@Override

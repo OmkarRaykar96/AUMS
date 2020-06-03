@@ -14,7 +14,7 @@ public interface ITrainingMaterialService {
 
 	public void addFiles(MultipartFile[] filesArr, int courseId, int trainerId) throws IOException, SQLException;
 	
-	public void deleteFile(int materialId);
+	public String deleteFile(int materialId);
 	
 	public List<TrainingMaterial> getFilesByTrainingId(int courseId, int trainerId);
 	

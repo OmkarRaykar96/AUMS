@@ -36,8 +36,9 @@ public class TrainingMaterialDao implements ITrainingMaterialDao {
 	}
 
 	@Override
-	public void deleteFile(int fileId) {
+	public String deleteFile(int fileId) {
 		jdbcTemplate.update(Queries.DELETE_FILES_BY_TRAINING,fileId);
+		return "File deleted!";
 	}
 	
 	@Override

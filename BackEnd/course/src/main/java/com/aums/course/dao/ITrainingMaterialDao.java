@@ -16,7 +16,7 @@ public interface ITrainingMaterialDao {
 	
 	public int getTrainingId(int courseId,int trainerId);
 	
-	public void deleteFile(int materialId);
+	public String deleteFile(int materialId);
 	
 	public List<TrainingMaterial> getFilesByTrainingId(int materialId);
 	

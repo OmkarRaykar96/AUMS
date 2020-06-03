@@ -14,32 +14,39 @@ public class CourseService implements ICourseService {
 	@Autowired
 	CourseDao courseDao;
 	
+	@Override
 	public List<Course> getAllCourses() {
 		return courseDao.getAllCourses();
 	}
 	
+	@Override
 	public Course getCourseById(int id) {
 		return courseDao.getCourseById(id);
 	}
 	
+	@Override
 	public List<Course> getCourseForAdmin(int id) {
 		return courseDao.getCourseForAdmin(id);
 	}
 	
+	@Override
 	public List<Course> getCourseForTrainer(int id) {
 		return courseDao.getCourseForTrainer(id);
 	}
 	
-	public void updateCourse(Course course) {	
-		courseDao.updateCourse(course);
+	@Override
+	public String updateCourse(Course course) {	
+		return courseDao.updateCourse(course);
 	}
 	
-	public void deleteCourse(int id) {
-		courseDao.deleteCourse(id);
+	@Override
+	public String deleteCourse(int id) {
+		return courseDao.deleteCourse(id);
 	}
 	
-	public void addCourse(Course course) {
-		courseDao.addCourse(course);
+	@Override
+	public String addCourse(Course course) {
+		return courseDao.addCourse(course);
 	}
 	
 }

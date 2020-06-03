@@ -29,9 +29,9 @@ public class TrainingMaterialController {
 	}
 	
 	@PostMapping("/delete")
-	public void deleteFilesByFileId(@RequestBody int fileId)  {
+	public String deleteFile(@RequestBody int fileId)  {
 		System.out.println("Files to delete"+fileId);
-		trainingMaterialService.deleteFile(fileId);
+		return trainingMaterialService.deleteFile(fileId);
 	}
 		
 	@GetMapping("/files/{courseId}/{trainerId}")

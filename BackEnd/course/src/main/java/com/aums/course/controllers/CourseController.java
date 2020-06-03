@@ -41,18 +41,18 @@ public class CourseController {
 	}
 	
 	@PostMapping("/updateCourse")
-	public void updateCourse(@RequestBody Course course){
-		courseService.updateCourse(course);
+	public String updateCourse(@RequestBody Course course){
+		return courseService.updateCourse(course);
 	}
 	
 	@PostMapping("/deleteCourse")
-	public void deleteCourse(@RequestBody Course course){
-		courseService.deleteCourse(course.getCourseId());
+	public String deleteCourse(@RequestBody Course course){
+		return courseService.deleteCourse(course.getCourseId());
 	}
 	
 	@PostMapping("/addCourse")
-	public void addCourse(@RequestBody Course course){
-		courseService.addCourse(course);
+	public String addCourse(@RequestBody Course course){
+		return courseService.addCourse(course);
 	}
 	
 }
