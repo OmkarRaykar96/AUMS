@@ -9,9 +9,9 @@
             <img src="../../../assets/Recycle_Bin_Full.png">
         </button>
     </div>
-    <div>
-        <button mat-button (click)="onNoClick()">Cancel</button>
-        <button mat-stroked-button color="primary" (click)="sendFilesToDB()">
+    <div align="center">
+        <button mat-button style="color: red;" (click)="onNoClick()">Cancel</button> &nbsp;
+        <button mat-stroked-button color="primary" (click)="sendFilesToDB()" [disabled]="files.length == 0">
             Upload Files
         </button>
     </div>

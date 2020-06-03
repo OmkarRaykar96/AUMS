@@ -14,17 +14,20 @@ export class ViewDeleteFileComponent implements OnInit {
 
   trainerId = this.session.get('user').empId;
   unprocessedFiles = [];
+  cId: number;
 
   constructor(
     public session: SessionStorageService,
     private snackBar: MatSnackBar,
     private fileService: FileService,
     public dialogRef: MatDialogRef<ViewDeleteFileComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: number) { }
+    @Optional() @Inject(MAT_DIALOG_DATA) public data) {
+    this.cId = data.courseId;
+  }
 
   ngOnInit() {
     this.dialogRef.updateSize('30%', '50%');
-    this.fileService.getTrainingMaterial(this.data, this.trainerId).subscribe((response: Material[]) => {
+    this.fileService.getTrainingMaterial(this.cId, this.trainerId).subscribe((response: Material[]) => {
       this.unprocessedFiles = response;
       console.log('Received BLOB ->', this.unprocessedFiles);
     });

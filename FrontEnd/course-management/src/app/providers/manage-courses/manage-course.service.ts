@@ -8,12 +8,15 @@ import { Training } from 'src/app/models/training/Training';
 })
 
 export class ManageCourseService {
+  getAllTrainers(id: number) {
+    return this.http.get('/api/training/getTrainersByCourseId/' + id);
+  }
 
 
   constructor(public http: HttpClient) { }
 
   getAllCourses() {
-    return this.http.get('api/course/all');
+    return this.http.get('/api/course/all');
   }
 
   addCourse(obj: Course) {

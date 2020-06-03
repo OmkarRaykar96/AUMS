@@ -25,6 +25,8 @@ import { ViewDeleteFileComponent } from './components/view-delete-file/view-dele
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { SendMailComponent } from './components/send-mail/send-mail.component';
+import { ViewTrainingComponent } from './components/view-training/view-training.component';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
@@ -51,7 +53,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
-import { SendMailComponent } from './components/send-mail/send-mail.component';
 
 export function socialConfigs() {
   const config = new AuthServiceConfig(
@@ -80,7 +81,8 @@ export function socialConfigs() {
     PieChartComponent,
     LineChartComponent,
     BarChartComponent,
-    SendMailComponent
+    SendMailComponent,
+    ViewTrainingComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +129,8 @@ export function socialConfigs() {
   entryComponents: [
     UploadFileComponent,
     ViewDeleteFileComponent,
-    SendMailComponent
+    SendMailComponent,
+    ViewTrainingComponent
   ],
   bootstrap: [AppComponent]
 })

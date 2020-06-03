@@ -6,6 +6,9 @@ import { Course } from 'src/app/models/course/Course';
 import { SocialloginService } from '../../providers/login/sociallogin.service';
 import { Router } from '@angular/router';
 import { ManageCourseService } from '../../providers/manage-courses/manage-course.service';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ViewTrainingComponent } from '../view-training/view-training.component';
+import { User } from 'src/app/models/login/user';
 
 @Component({
   selector: 'app-view-all-courses',
@@ -15,7 +18,7 @@ import { ManageCourseService } from '../../providers/manage-courses/manage-cours
 
 export class ViewAllCoursesComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'location', 'description', 'prerequisites', 'skills'];
+  displayedColumns: string[] = ['name', 'location', 'description', 'prerequisites', 'skills', 'trainer'];
   COURSE_DATA: Course[] = [];
   dataSource: MatTableDataSource<Course>;
 
@@ -27,6 +30,7 @@ export class ViewAllCoursesComponent implements OnInit {
     private router: Router,
     public loginService: SocialloginService,
     public service: ManageCourseService,
+    public dialog: MatDialog
   ) {
 
   }
@@ -60,5 +64,19 @@ export class ViewAllCoursesComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  openTrianerDialog(id) {
+    let tempTrainers: User[] = [];
+    this.service.getAllTrainers(id).subscribe((response: User[]) => {
+      tempTrainers = response;
+      this.dialog.open(ViewTrainingComponent, {
+        data: {
+          courseId: id,
+          trainers: tempTrainers
+        }
+      },
+      );
+    });
   }
 }

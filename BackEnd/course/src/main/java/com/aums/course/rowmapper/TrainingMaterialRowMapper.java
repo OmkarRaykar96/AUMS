@@ -20,7 +20,7 @@ public class TrainingMaterialRowMapper {
 		model.setFile(rs.getBlob(AttributeMapper.MATERIAL_FILE).getBytes(1, (int)rs.getBlob(AttributeMapper.MATERIAL_FILE).length()));
 		model.setFileName(rs.getString(AttributeMapper.MATERIAL_FILE_NAME));
 		model.setFileType(rs.getString(AttributeMapper.MATERIAL_FILE_TYPE));
-
+		model.setTrainerId(rs.getInt(AttributeMapper.TRAINING_TRAINER_ID));
 		return model;
 	};
 	

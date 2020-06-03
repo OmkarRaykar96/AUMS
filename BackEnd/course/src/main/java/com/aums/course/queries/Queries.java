@@ -38,7 +38,7 @@ public class Queries {
 	public static final String GET_TRAINING_ID = "SELECT " + AttributeMapper.TRAINING_ID + " FROM " + AttributeMapper.TRAINING + " WHERE " + AttributeMapper.TRAINING_COURSE_ID + "=? AND " + AttributeMapper.TRAINING_TRAINER_ID + "=?";
 	public static final String ADD_FILES_BY_TRAINING = "INSERT INTO " + AttributeMapper.MATERIAL + " (" + AttributeMapper.MATERIAL_ID + ", " + AttributeMapper.MATERIAL_FILE + ", " + AttributeMapper.MATERIAL_FILE_NAME + ", " + AttributeMapper.MATERIAL_FILE_TYPE + ", " + AttributeMapper.MATERIAL_ACTIVE_FLAG + ")values(?,?,?,?,'Y')";
 	public static final String DELETE_FILES_BY_TRAINING = "UPDATE " + AttributeMapper.MATERIAL + " set " + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='N' WHERE " + AttributeMapper.MATERIAL_FILE_ID + "=?";
-	public static final String GET_FILES_BY_TRAINING = "SELECT * FROM " + AttributeMapper.MATERIAL + " WHERE " + AttributeMapper.MATERIAL_ID + "=? AND " + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='Y'";
+	public static final String GET_FILES_BY_TRAINING = "SELECT tm.*, t." + AttributeMapper.TRAINING_TRAINER_ID + " FROM " + AttributeMapper.MATERIAL + " tm, " + AttributeMapper.TRAINING + " t where tm." + AttributeMapper.MATERIAL_ID + "=? AND tm." + AttributeMapper.MATERIAL_ACTIVE_FLAG + "='Y' and tm." + AttributeMapper.MATERIAL_ID + "=t." + AttributeMapper.TRAINING_ID + "";
 	
 	// Utility
 	public static final String GET_ALL_EMPLOYEES = "SELECT "+ AttributeMapper.EMP_ID +","+ AttributeMapper.EMP_NAME +","+ AttributeMapper.EMP_EMAIL_ID +" FROM " + AttributeMapper.EMPLOYEE + "";

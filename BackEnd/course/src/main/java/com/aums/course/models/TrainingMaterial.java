@@ -16,5 +16,6 @@ public class TrainingMaterial {
 	private byte[] file;
 	private String fileName;
 	private String fileType;
+	private int trainerId;
 	
 }

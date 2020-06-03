@@ -24,8 +24,8 @@ export class FileService {
     return this.http.post('api/trainingMaterial/add', formData, headers);
   }
 
-  getTrainingMaterial(courseId: any, trainerId: number) {
-    return this.http.get('api/trainingMaterial/files/' + courseId.courseId + '/' + trainerId);
+  getTrainingMaterial(courseId: number, trainerId: number) {
+    return this.http.get('api/trainingMaterial/files/' + courseId + '/' + trainerId);
   }
 
 }

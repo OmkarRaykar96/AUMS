@@ -23,7 +23,6 @@ public class TrainingMaterialDao implements ITrainingMaterialDao {
 	
 	@Override
 	public void addFiles(MultipartFile[] filesArr, int trainingId) throws IOException, SerialException, SQLException {
-
 		for(MultipartFile file : filesArr) {
 			byte[] bytes = file.getBytes();
 		    Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
@@ -33,7 +32,6 @@ public class TrainingMaterialDao implements ITrainingMaterialDao {
 	
 	@Override
 	public int getTrainingId(int courseId,int trainerId) {
-		
 		return jdbcTemplate.queryForObject(Queries.GET_TRAINING_ID ,Integer.class,courseId,trainerId);
 	}
 

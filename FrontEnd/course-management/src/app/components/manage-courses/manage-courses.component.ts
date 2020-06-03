@@ -111,7 +111,6 @@ export class ManageCoursesComponent implements OnInit {
       this.openSnackBar('Course Added Successfully', 'Done');
       window.location.reload();
     });
-
   }
 
   editCourse() {
@@ -226,7 +225,7 @@ export class ManageCoursesComponent implements OnInit {
 
     this.service.unAssignTrainer(obj).subscribe((response) => {
       this.openSnackBar('Trainer Unassigned Successfully', 'Done');
-      this.trainerCourse = null;
+      this.goBack();
     });
 
   }
