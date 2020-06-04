@@ -30,7 +30,6 @@ public class TrainingMaterialController {
 	
 	@PostMapping("/delete")
 	public String deleteFile(@RequestBody int fileId)  {
-		System.out.println("Files to delete"+fileId);
 		return trainingMaterialService.deleteFile(fileId);
 	}
 		

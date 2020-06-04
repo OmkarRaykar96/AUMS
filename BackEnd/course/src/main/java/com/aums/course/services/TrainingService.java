@@ -42,10 +42,11 @@ public class TrainingService implements ITrainingService {
 	
 	@Override
 	public String unassignTrainers(int courseId, int trainerId) {
+		String str = trainingDao.unassignTrainers(courseId, trainerId);
 		if(trainingDao.validateTrainer(trainerId) == 0) {
 			trainingDao.updateTrainerStatus(trainerId);
 		}
-		return trainingDao.unassignTrainers(courseId, trainerId);
+		return str;
 	}
 	
 	@Override

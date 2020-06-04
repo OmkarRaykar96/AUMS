@@ -31,21 +31,24 @@ public class TrainingMaterialServiceTest {
 	TrainingMaterial trainingMaterial = new TrainingMaterial();
 	List<TrainingMaterial> list = new ArrayList<>();
 	
+	
+	
 	@BeforeEach
 	public void init() {
+		
 		trainingMaterial.setFileId(1);
 		trainingMaterial.setFileName("abc");
 		trainingMaterial.setFileType("application/pdf");
 		trainingMaterial.setMaterialId(1);
 		trainingMaterial.setTrainerId(1);
-		
+//		trainingMaterial.setFile(CDRIVES);
 		list.add(trainingMaterial);
 		list.add(trainingMaterial);
 	}
 	
 //	@Test
 //	public void addFiles () throws IOException, SQLException {
-//		Mockito.when(trainingMaterialDao.addFiles(1)).thenReturn(course1);
+//		Mockito.when(trainingMaterialDao.addFiles(trainingMaterial)).thenReturn(course1);
 //		assertEquals(course1,trainingMaterialService.getCourseById(1));
 //		
 //	}
@@ -64,11 +67,6 @@ public class TrainingMaterialServiceTest {
 		Mockito.when(trainingMaterialDao.getTrainingId(1,2)).thenReturn(1);
 		assertEquals(1,trainingMaterialService.getFilesByTrainingId(1,2));
 	}
-//
-//	@Override
-//	public void addFiles(MultipartFile[] filesArr, int courseId, int trainerId) throws IOException, SQLException {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
 	
 }

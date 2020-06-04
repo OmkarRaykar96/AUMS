@@ -1,6 +1,6 @@
 package com.aums.course.controllers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals; 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -13,16 +13,15 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.aums.course.models.Course;
 import com.aums.course.services.CourseService;
-import com.aums.course.utils.Utils;
 
 @SpringBootTest()
 @AutoConfigureMockMvc
@@ -38,7 +37,7 @@ public class CourseControllerTest {
 	@InjectMocks
 	private CourseController courseController;
 	
-	@MockBean
+	@Mock
 	private CourseService courseService;
 
 	@BeforeEach
@@ -66,8 +65,6 @@ public class CourseControllerTest {
 	
 	@Test
 	public void getCourseById() throws Exception {
-
-		
 		when(courseService.getCourseById(1)).thenReturn(course1);
 		
 		mockMvc.perform(get("/api/course/1")).andDo(print())
@@ -85,47 +82,22 @@ public class CourseControllerTest {
 	
 	@Test
 	public void addCourse() throws Exception {
-
-		
-//		Course testcourse = course;
-		
-		
 		when(courseService.addCourse(course1)).thenReturn("Course Added Successfully");
-		
-//		assertEquals("Course Added Successfully",courseService.addCourse(course));
-		mockMvc.perform(post("/api/course/add")
-			    .content(Utils.asJsonString(course1))
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
-				.andDo(print())
-//				.andExpect(ResultMatcher.contentTypeCompatibleWith(String.class))
-				.andReturn();
+		assertEquals("Course Added Successfully",courseController.addCourse(course1));
+
 	}
 	
 	@Test
-	public void updateCourse() {
-		
-		
+	public void updateCourse() throws Exception {
 		when(courseService.updateCourse(course1)).thenReturn("Course Updated Successfully");
 		assertEquals("Course Updated Successfully",courseController.updateCourse(course1));
-//		mockMvc.perform(post("/api/course/save")
-//				 	.content(Utils.asJsonString(course))
-//					.contentType(MediaType.APPLICATION_JSON)
-//					.accept(MediaType.APPLICATION_JSON))
-//					.andExpect(status().isOk())
-//					.andReturn();
+
 	}
 	
 	@Test
 	public void deleteCourse() {
-		
-		when(courseService.deleteCourse(course1.getCourseId())).thenReturn("Course Deleted Successfully");
+		when(courseService.deleteCourse(1)).thenReturn("Course Deleted Successfully");
 		assertEquals("Course Deleted Successfully",courseController.deleteCourse(course1));
-//		mockMvc.perform(delete("/api/course/delete/2")
-//				.contentType(MediaType.APPLICATION_JSON)
-//				.characterEncoding("utf-8"))
-//				.andExpect(status().isOk())
-//				.andReturn();
 	}
 	
 	@Test

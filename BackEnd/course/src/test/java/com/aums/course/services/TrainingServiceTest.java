@@ -69,17 +69,28 @@ public class TrainingServiceTest {
 	}
 
 	@Test
-	public void unassignTrainers() {
-		Mockito.when(trainingDao.validateTrainer(1)).thenReturn(2);
+	public void unassignTrainers_1() {
+		Mockito.when(trainingDao.unassignTrainers(1,2)).thenReturn("Trainer Assigned Successfully!!");
+		
+		
+		Mockito.when(trainingDao.validateTrainer(2)).thenReturn(0);
+		
 		assertEquals("Trainer Assigned Successfully!!", trainingService.assignTrainers(1,2));
+		
+	}
+	
+	@Test
+	public void unassignTrainers_2() {
+		Mockito.when(trainingDao.unassignTrainers(1,2)).thenReturn("Trainer Assigned Successfully!!");
+		
+		Mockito.when(trainingDao.validateTrainer(2)).thenReturn(1);
 		
 		Mockito.when(trainingDao.updateTrainerStatus(1)).thenReturn("Trainer Updated!!!");
-		assertEquals("Trainer Assigned Successfully!!", trainingService.assignTrainers(1,2));
 		
-		Mockito.when(trainingDao.unassignTrainers(1,2)).thenReturn("Trainer Assigned Successfully!!");
+		
 		assertEquals("Trainer Assigned Successfully!!", trainingService.assignTrainers(1,2));
 	}
-
+	
 	@Test
 	public void getTrainersByCourseId() {
 		Mockito.when(trainingDao.getTrainersByCourseId(1)).thenReturn(list);
