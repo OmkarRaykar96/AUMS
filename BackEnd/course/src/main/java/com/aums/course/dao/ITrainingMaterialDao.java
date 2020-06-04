@@ -12,7 +12,7 @@ import com.aums.course.models.TrainingMaterial;
 
 public interface ITrainingMaterialDao {
 	
-	public void addFiles(MultipartFile[] filesArr, int materialId) throws IOException, SQLException ;
+	public String addFiles(MultipartFile[] filesArr, int materialId) throws IOException, SQLException ;
 	
 	public int getTrainingId(int courseId,int trainerId);
 	

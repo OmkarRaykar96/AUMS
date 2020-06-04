@@ -1,6 +1,6 @@
 package com.aums.course.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals; 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -48,7 +48,7 @@ public class TrainingMaterialServiceTest {
 	
 //	@Test
 //	public void addFiles () throws IOException, SQLException {
-//		Mockito.when(trainingMaterialDao.addFiles(trainingMaterial)).thenReturn(course1);
+//		Mockito.when(trainingMaterialDao.addFiles([new MultipartFile(), new MultipartFile()], 1, 2)).thenReturn(course1);
 //		assertEquals(course1,trainingMaterialService.getCourseById(1));
 //		
 //	}

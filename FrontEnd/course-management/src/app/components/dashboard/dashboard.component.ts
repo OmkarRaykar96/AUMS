@@ -13,6 +13,7 @@ import { SessionStorageService } from 'angular-web-storage';
 
 export class DashboardComponent implements OnInit {
   socialusers = new Socialusers();
+  sessionName = this.session.get('user').empName;
 
   constructor(
     public OAuth: AuthService,

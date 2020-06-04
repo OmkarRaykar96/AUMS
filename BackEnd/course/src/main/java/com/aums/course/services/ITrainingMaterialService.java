@@ -12,7 +12,7 @@ import com.aums.course.models.TrainingMaterial;
 
 public interface ITrainingMaterialService {
 
-	public void addFiles(MultipartFile[] filesArr, int courseId, int trainerId) throws IOException, SQLException;
+	public String addFiles(MultipartFile[] filesArr, int courseId, int trainerId) throws IOException, SQLException;
 	
 	public String deleteFile(int materialId);
 	

@@ -20,8 +20,8 @@ public class TrainingMaterialService implements ITrainingMaterialService {
 	TrainingMaterialDao trainingMaterialDao;
 	
 	@Override
-	public void addFiles(MultipartFile[] filesArr, int courseId, int trainerId) throws IOException, SerialException, SQLException {
-		trainingMaterialDao.addFiles(filesArr, trainingMaterialDao.getTrainingId(courseId, trainerId));
+	public String addFiles(MultipartFile[] filesArr, int courseId, int trainerId) throws IOException, SerialException, SQLException {
+		return trainingMaterialDao.addFiles(filesArr, trainingMaterialDao.getTrainingId(courseId, trainerId));
 	}
 	
 	@Override

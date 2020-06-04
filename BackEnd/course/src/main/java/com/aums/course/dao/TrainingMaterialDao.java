@@ -22,12 +22,13 @@ public class TrainingMaterialDao implements ITrainingMaterialDao {
 	JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public void addFiles(MultipartFile[] filesArr, int trainingId) throws IOException, SerialException, SQLException {
+	public String addFiles(MultipartFile[] filesArr, int trainingId) throws IOException, SerialException, SQLException {
 		for(MultipartFile file : filesArr) {
 			byte[] bytes = file.getBytes();
 		    Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
 		   jdbcTemplate.update(Queries.ADD_FILES_BY_TRAINING, trainingId, blob, file.getOriginalFilename(), file.getContentType());
 		}
+		return "File Added Successfully";
 	}
 	
 	@Override

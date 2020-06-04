@@ -24,8 +24,8 @@ public class TrainingMaterialController {
 	TrainingMaterialService trainingMaterialService;
 	
 	@PostMapping("/add")
-	public void addFiles(@RequestParam("files[]") MultipartFile[] filesArr,@RequestParam("courseId") int courseId, @RequestParam("trainerId") int trainerId) throws Exception {
-		trainingMaterialService.addFiles(filesArr, courseId, trainerId);
+	public String addFiles(@RequestParam("files[]") MultipartFile[] filesArr,@RequestParam("courseId") int courseId, @RequestParam("trainerId") int trainerId) throws Exception {
+		return trainingMaterialService.addFiles(filesArr, courseId, trainerId);
 	}
 	
 	@PostMapping("/delete")
