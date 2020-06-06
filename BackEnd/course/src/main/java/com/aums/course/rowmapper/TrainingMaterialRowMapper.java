@@ -24,4 +24,18 @@ public class TrainingMaterialRowMapper {
 		return model;
 	};
 	
+	public static final RowMapper<TrainingMaterial> VersionRowMapperLambda = (rs, rowNum) -> {
+		
+		TrainingMaterial model = new TrainingMaterial();
+
+		model.setFile(rs.getBlob("material_file").getBytes(1, (int)rs.getBlob("material_file").length()));
+		model.setFileName(rs.getString("material_file_name"));
+		model.setFileType(rs.getString("material_file_type"));
+		model.setUploadedOn(rs.getDate("uploaded_on"));
+		model.setDeletedOn(rs.getDate("deleted_on"));
+		model.setTrainerName(rs.getString("emp_name"));
+
+		return model;
+	};
+	
 }

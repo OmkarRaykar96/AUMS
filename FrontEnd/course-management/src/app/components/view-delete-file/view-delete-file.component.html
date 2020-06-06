@@ -7,8 +7,8 @@
         </tr>
         <tr *ngFor="let files of unprocessedFiles; let i = index">
             <td>
-                <mat-icon color="primary">file_copy</mat-icon> <a
-                    (click)="downloadFile(files.file, files.fileType)">{{files.fileName}}</a>
+                <mat-icon color="primary">file_copy</mat-icon>
+                <a (click)="downloadFile(files.file, files.fileType)">{{files.fileName}}</a>
             </td>
             <th>&nbsp;</th>
             <th>

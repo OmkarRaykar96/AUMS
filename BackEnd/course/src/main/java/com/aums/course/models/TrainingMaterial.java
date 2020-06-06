@@ -1,6 +1,7 @@
 package com.aums.course.models;
 
-import lombok.AllArgsConstructor;
+import java.util.Date;  
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,11 @@ public class TrainingMaterial {
 	private byte[] file;
 	private String fileName;
 	private String fileType;
+	
 	private int trainerId;
+	private String trainerName;
+	
+	private Date uploadedOn;
+	private Date deletedOn;
 	
 }

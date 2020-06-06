@@ -59,7 +59,8 @@ export class ViewDeleteFileComponent implements OnInit {
   deleteTraining(fileId) {
     console.log(fileId);
     if (confirm('You Sure want to delete the Training Material?')) {
-      this.fileService.deleteTraining(fileId).subscribe((Response) => {
+      this.fileService.deleteTraining(fileId).subscribe((response) => {
+        console.log(response);
         this.ngOnInit();
       });
     }

@@ -19,5 +19,7 @@ public interface ITrainingMaterialDao {
 	public String deleteFile(int materialId);
 	
 	public List<TrainingMaterial> getFilesByTrainingId(int materialId);
+
+	List<TrainingMaterial> getVersions(int courseId);
 	
 }

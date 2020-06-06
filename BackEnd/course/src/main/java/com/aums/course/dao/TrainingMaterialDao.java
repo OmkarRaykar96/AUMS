@@ -22,7 +22,7 @@ public class TrainingMaterialDao implements ITrainingMaterialDao {
 	JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public String addFiles(MultipartFile[] filesArr, int trainingId) throws IOException, SerialException, SQLException {
+	public String addFiles(MultipartFile[] filesArr, int trainingId) throws IOException, SQLException {
 		for(MultipartFile file : filesArr) {
 			byte[] bytes = file.getBytes();
 		    Blob blob = new javax.sql.rowset.serial.SerialBlob(bytes);
@@ -45,5 +45,10 @@ public class TrainingMaterialDao implements ITrainingMaterialDao {
 	@Override
 	public List<TrainingMaterial> getFilesByTrainingId(int materialId) {
 		return jdbcTemplate.query(Queries.GET_FILES_BY_TRAINING, TrainingMaterialRowMapper.TrainingMaterialRowMapperLambda, materialId);
+	}
+	
+	@Override
+	public List<TrainingMaterial> getVersions(int courseId) {
+		return jdbcTemplate.query(Queries.GET_VERSIONS, TrainingMaterialRowMapper.VersionRowMapperLambda, courseId);
 	}
 }

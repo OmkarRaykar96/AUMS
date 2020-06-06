@@ -19,7 +19,6 @@ export class ViewTrainingComponent implements OnInit {
   unprocessedFiles: Material[] = [];
   trainers: User[];
   courseId: number;
-  loaded = false;
 
   constructor(
     public session: SessionStorageService,
@@ -28,9 +27,9 @@ export class ViewTrainingComponent implements OnInit {
     public dialogRef: MatDialogRef<ViewTrainingComponent>,
     public trainingService: TrainingService,
     @Optional() @Inject(MAT_DIALOG_DATA) public data) {
+
     this.trainers = data.trainers;
     this.courseId = data.courseId;
-    console.log('Inside Dialog', this.trainers);
 
     for (const trainer of this.trainers) {
       this.fileService.getTrainingMaterial(this.courseId, trainer.empId).subscribe((response: Material[]) => {
@@ -43,8 +42,6 @@ export class ViewTrainingComponent implements OnInit {
 
       });
     }
-    console.log('In before/after');
-    this.loaded = true;
 
   }
 

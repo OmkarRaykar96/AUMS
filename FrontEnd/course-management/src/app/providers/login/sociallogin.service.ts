@@ -14,9 +14,9 @@ export class SocialloginService {
 
   }
 
-  Savesresponse(responce) {
+  Savesresponse(response) {
     this.url = 'http://localhost:64726/Api/Login/Savesresponse';
-    return this.http.post(this.url, responce);
+    return this.http.post(this.url, response);
   }
 
   validateUser(email) {

@@ -20,11 +20,11 @@ export class ManageCourseService {
   }
 
   addCourse(obj: Course) {
-    return this.http.post('/api/course/addCourse', obj);
+    return this.http.post('/api/course/addCourse', obj, { responseType: 'text' });
   }
 
   editCourse(obj: Course) {
-    return this.http.post('/api/course/updateCourse', obj);
+    return this.http.post('/api/course/updateCourse', obj, { responseType: 'text' });
   }
 
   getAllEmployees() {
@@ -36,15 +36,15 @@ export class ManageCourseService {
   }
 
   unAssignTrainer(obj: Training) {
-    return this.http.post('/api/training/unassignTrainers', obj);
+    return this.http.post('/api/training/unassignTrainers', obj, { responseType: 'text' });
   }
 
   assignTrainer(obj: Training) {
-    return this.http.post('/api/training/assignTrainers', obj);
+    return this.http.post('/api/training/assignTrainers', obj, { responseType: 'text' });
   }
 
   deleteCourse(course: Course) {
-    return this.http.post('api/course/deleteCourse', course);
+    return this.http.post('api/course/deleteCourse', course, { responseType: 'text' });
   }
 
   getAllCoursesForCurrentTrainer(trainerId: number) {

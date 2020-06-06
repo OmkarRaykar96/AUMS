@@ -26,7 +26,7 @@ export class TrainingService {
 
     console.log(mail);
 
-    return this.http.post('api/training/sendMail/', mail);
+    return this.http.post('api/training/sendMail/', mail, { responseType: 'text' });
   }
 
   constructor(public session: SessionStorageService, private http: HttpClient) { }

@@ -37,6 +37,7 @@ export class SendMailComponent implements OnInit {
   sendMail() {
     const emailId = this.emailFormControl.value;
     this.trainingService.sendMail(this.data, this.trainerId, emailId).subscribe((response) => {
+      console.log(response);
       this.dialogRef.close();
       this.openSnackBar('Mail Sent Successfully', 'Done');
     });

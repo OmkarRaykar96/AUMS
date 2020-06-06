@@ -44,6 +44,7 @@ export class UploadFileComponent implements OnInit {
 
   sendFilesToDB() {
     this.fileService.addTrainingMaterial(this.files, this.data, this.trainerId).subscribe((response) => {
+      console.log(response);
       this.openSnackBar('File Added Successfully', 'Done!');
       this.files = [];
     });

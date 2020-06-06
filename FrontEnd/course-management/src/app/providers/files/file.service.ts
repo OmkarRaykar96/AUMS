@@ -1,15 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SessionStorageService } from 'angular-web-storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileService {
-  deleteTraining(fileId: number) {
-    return this.http.post('api/trainingMaterial/delete', fileId);
+
+  constructor(
+    private http: HttpClient,
+    private session: SessionStorageService) {
+
   }
 
-  constructor(private http: HttpClient) { }
+  getVersions(courseId: number) {
+    return this.http.get('api/trainingMaterial/fileVersions/' + courseId);
+  }
+
+  deleteTraining(fileId: number) {
+    return this.http.post('api/trainingMaterial/delete', fileId, { responseType: 'text' });
+  }
 
   addTrainingMaterial(fileList, courseId, trainerId) {
     const formData: FormData = new FormData();
@@ -20,8 +30,8 @@ export class FileService {
 
     formData.append('courseId', courseId.courseId);
     formData.append('trainerId', trainerId);
-    const headers = { headers: new HttpHeaders({ enctype: 'multipart/form-data' }) };
-    return this.http.post('api/trainingMaterial/add', formData, headers);
+    // const headers = { headers: new HttpHeaders({ enctype: 'multipart/form-data', responseType: 'text' }) };
+    return this.http.post('api/trainingMaterial/add', formData, { responseType: 'text' });
   }
 
   getTrainingMaterial(courseId: number, trainerId: number) {

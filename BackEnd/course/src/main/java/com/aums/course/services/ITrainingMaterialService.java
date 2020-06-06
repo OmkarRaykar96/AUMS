@@ -17,5 +17,7 @@ public interface ITrainingMaterialService {
 	public String deleteFile(int materialId);
 	
 	public List<TrainingMaterial> getFilesByTrainingId(int courseId, int trainerId);
+
+	List<TrainingMaterial> getVersions(int courseId);
 	
 }

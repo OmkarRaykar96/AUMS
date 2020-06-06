@@ -12,6 +12,8 @@ import { SocialLoginModule, AuthServiceConfig, AuthService } from 'angular-6-soc
 })
 export class AppComponent implements OnInit {
   title = 'course-management';
+  sessionName: string;
+
 
   loggedIn: boolean;
   constructor(
@@ -19,11 +21,13 @@ export class AppComponent implements OnInit {
     public session: SessionStorageService,
     public loginService: SocialloginService,
     public OAuth: AuthService) {
-
   }
 
   ngOnInit() {
     this.loggedIn = this.loginService.getLoginStatus();
+    if (this.loggedIn) {
+      this.sessionName = this.session.get('user').empName;
+    }
   }
 
   getImgUrl() {

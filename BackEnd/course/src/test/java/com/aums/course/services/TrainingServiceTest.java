@@ -103,11 +103,4 @@ public class TrainingServiceTest {
 		assertEquals(list, trainingService.getAllEmployees());
 	}
 	
-	@Test
-	public void sendMail() throws Exception {
-		Mockito.when(trainingDao.sendMail()).thenReturn("Mail Sent Successfully!!");
-		assertEquals("Mail Sent Successfully!!", trainingService.sendMail(mail));
-	}
-	
-	
 }

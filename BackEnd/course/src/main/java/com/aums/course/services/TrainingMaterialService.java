@@ -33,4 +33,9 @@ public class TrainingMaterialService implements ITrainingMaterialService {
 	public List<TrainingMaterial> getFilesByTrainingId(int courseId, int trainerId) {
 		return trainingMaterialDao.getFilesByTrainingId(trainingMaterialDao.getTrainingId(courseId, trainerId));
 	}
+
+	@Override
+	public List<TrainingMaterial> getVersions(int courseId) {
+		return trainingMaterialDao.getVersions(courseId);
+	}
 }

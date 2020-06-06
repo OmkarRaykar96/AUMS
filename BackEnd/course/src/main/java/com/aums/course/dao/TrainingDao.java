@@ -60,9 +60,4 @@ public class TrainingDao implements ITrainingDao {
 		return jdbcTemplate.query(Queries.GET_ALL_EMPLOYEES, TrainingRowMapper.TrainerRowMapperLambda);
 	}
 	
-	@Override
-	public String sendMail() {
-		return "Mail Sent Successfully!!";
-	}
-	
 }

@@ -100,10 +100,5 @@ public class TrainingDaoTest {
 		when(jdbcTemplate.query(Queries.GET_ALL_EMPLOYEES, TrainingRowMapper.TrainerRowMapperLambda)).thenReturn(list);
 		assertEquals(list,trainingDao.getAllEmployees());
 	}
-
-	@Test
-	public void sendMail() {
-		assertEquals("Mail Sent Successfully!!",trainingDao.sendMail());
-	}
 	
 }

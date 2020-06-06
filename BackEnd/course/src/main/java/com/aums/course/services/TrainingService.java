@@ -82,7 +82,7 @@ public class TrainingService implements ITrainingService {
 			}
 			
 			javaMailSender.send(msg);
-			return trainingDao.sendMail();
+			return "Mail Sent Successfully!!!";
 	}
 	
 }

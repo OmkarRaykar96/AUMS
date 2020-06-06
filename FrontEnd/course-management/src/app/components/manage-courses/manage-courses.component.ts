@@ -82,6 +82,7 @@ export class ManageCoursesComponent implements OnInit {
       this.router.navigate(['/login']);
     } else {
       this.service.getAllCourses().subscribe((response: Course[]) => {
+        console.log(response);
         this.COURSE_DATA = response;
         this.dataSource = new MatTableDataSource(this.COURSE_DATA);
         this.dataSource.paginator = this.paginator;
@@ -106,8 +107,8 @@ export class ManageCoursesComponent implements OnInit {
     obj.coursePrerequisites = this.addCourseForm.value.prerequisites;
     obj.courseAdminId = this.session.get('user').empId;
 
-    this.service.addCourse(obj).subscribe((Response) => {
-      console.log(Response);
+    this.service.addCourse(obj).subscribe((response) => {
+      console.log(response);
       this.openSnackBar('Course Added Successfully', 'Done');
       window.location.reload();
     });
@@ -125,10 +126,10 @@ export class ManageCoursesComponent implements OnInit {
     obj.courseAdminId = this.session.get('user').empId;
 
     console.log(obj);
-    this.service.editCourse(obj).subscribe((Response) => {
-      console.log(Response);
+    this.service.editCourse(obj).subscribe((response) => {
+      console.log(response);
       this.openSnackBar('Course Updated Successfully', 'Done');
-      window.location.reload();
+      this.goBack();
     });
 
     this.modifyCourseId = null;
@@ -182,6 +183,8 @@ export class ManageCoursesComponent implements OnInit {
   deleteCourse(course: Course) {
     console.log('to Be Deleted', course);
     this.service.deleteCourse(course).subscribe((response) => {
+      console.log(response);
+
       this.ngOnInit();
       this.section = 'Modify/Delete Course';
       this.openSnackBar('Course Deleted Successfully', 'Done');
@@ -207,6 +210,7 @@ export class ManageCoursesComponent implements OnInit {
     obj.trainerId = trainerId;
 
     this.service.assignTrainer(obj).subscribe((response) => {
+      console.log(response);
       this.openSnackBar('Trainer Assigned Successfully', 'Done');
       this.goBack();
     });
@@ -224,6 +228,7 @@ export class ManageCoursesComponent implements OnInit {
     console.log(obj);
 
     this.service.unAssignTrainer(obj).subscribe((response) => {
+      console.log(response);
       this.openSnackBar('Trainer Unassigned Successfully', 'Done');
       this.goBack();
     });
@@ -235,6 +240,7 @@ export class ManageCoursesComponent implements OnInit {
     this.editMode = false;
     this.trainerCourse = null;
     this.trainers = [];
+    this.ngOnInit();
   }
 
   applyFilter(event: Event) {

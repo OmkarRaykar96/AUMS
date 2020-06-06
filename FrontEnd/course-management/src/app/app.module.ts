@@ -5,8 +5,8 @@ import { AppComponent } from './app.component';
 
 // Libraries
 import { HttpClientModule } from '@angular/common/http';
-import { GoogleLoginProvider, FacebookLoginProvider, AuthService } from 'angular-6-social-login';
-import { SocialLoginModule, AuthServiceConfig } from 'angular-6-social-login';
+import { GoogleLoginProvider, AuthService } from 'angular-6-social-login';
+import { AuthServiceConfig } from 'angular-6-social-login';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +27,7 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { SendMailComponent } from './components/send-mail/send-mail.component';
 import { ViewTrainingComponent } from './components/view-training/view-training.component';
+import { VersionComponent } from './components/version/version.component';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
@@ -53,6 +54,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
+
 
 export function socialConfigs() {
   const config = new AuthServiceConfig(
@@ -82,7 +84,8 @@ export function socialConfigs() {
     LineChartComponent,
     BarChartComponent,
     SendMailComponent,
-    ViewTrainingComponent
+    ViewTrainingComponent,
+    VersionComponent
   ],
   imports: [
     BrowserModule,
@@ -130,7 +133,8 @@ export function socialConfigs() {
     UploadFileComponent,
     ViewDeleteFileComponent,
     SendMailComponent,
-    ViewTrainingComponent
+    ViewTrainingComponent,
+    VersionComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -19,7 +19,5 @@ public interface ITrainingDao {
 	public List<Employee> getTrainersByCourseId(int courseId);
 
 	public List<Employee> getAllEmployees();
-
-	public String sendMail();
 	
 }

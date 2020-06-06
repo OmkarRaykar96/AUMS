@@ -38,5 +38,10 @@ public class TrainingMaterialController {
 		return trainingMaterialService.getFilesByTrainingId(courseId, trainerId);
 	}
 
+	@GetMapping("/fileVersions/{courseId}")
+	public List<TrainingMaterial> getVersions(@PathVariable("courseId") int courseId) {
+		return trainingMaterialService.getVersions(courseId);
+	}
+	
 }
 

@@ -1,8 +1,7 @@
 package com.aums.course.models;
 
-import java.sql.Blob;
+import java.sql.Blob; 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
