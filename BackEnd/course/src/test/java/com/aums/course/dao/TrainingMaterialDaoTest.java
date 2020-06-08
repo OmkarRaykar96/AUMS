@@ -10,14 +10,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.aums.course.models.TrainingMaterial;
 import com.aums.course.queries.Queries;
-import com.aums.course.rowmapper.LoginRowMapper;
 import com.aums.course.rowmapper.TrainingMaterialRowMapper;
+import com.mysql.cj.jdbc.Blob;
 
 @SpringBootTest()
 public class TrainingMaterialDaoTest {
@@ -61,7 +61,10 @@ public class TrainingMaterialDaoTest {
 
 	@Test
 	public void addFiles() throws Exception {
-		
+		MultipartFile[] file = null;
+		byte[] test = null;
+		when(jdbcTemplate.update(Queries.ADD_FILES_BY_TRAINING, 1, new javax.sql.rowset.serial.SerialBlob(test), file.length+"", file.length+"")).thenReturn(1);
+		assertEquals("File Added Successfully",trainingMaterialDao.addFiles(file,1));
 	}
 
 	@Test
@@ -81,5 +84,12 @@ public class TrainingMaterialDaoTest {
 		when(jdbcTemplate.query(Queries.GET_FILES_BY_TRAINING, TrainingMaterialRowMapper.TrainingMaterialRowMapperLambda, 1)).thenReturn(list);
 		assertEquals(list,trainingMaterialDao.getFilesByTrainingId(1));
 	}
+
+	@Test
+	public void getVersions() {
+		when(jdbcTemplate.query(Queries.GET_VERSIONS, TrainingMaterialRowMapper.VersionRowMapperLambda, 1)).thenReturn(list);
+		assertEquals(list,trainingMaterialDao.getVersions(1));
+	}
+	
 	
 }

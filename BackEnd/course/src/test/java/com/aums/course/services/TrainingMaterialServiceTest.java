@@ -46,12 +46,13 @@ public class TrainingMaterialServiceTest {
 		list.add(trainingMaterial);
 	}
 	
-//	@Test
-//	public void addFiles () throws IOException, SQLException {
-//		Mockito.when(trainingMaterialDao.addFiles([new MultipartFile(), new MultipartFile()], 1, 2)).thenReturn(course1);
-//		assertEquals(course1,trainingMaterialService.getCourseById(1));
-//		
-//	}
+	@Test
+	public void addFiles () throws IOException, SQLException {
+		MultipartFile[] file = null;
+		Mockito.when(trainingMaterialDao.addFiles(file, 1)).thenReturn("File Added");
+		assertEquals("File Added",trainingMaterialService.addFiles(file, 1,2));
+		
+	}
 
 	@Test
 	public void deleteFile() {
@@ -67,6 +68,13 @@ public class TrainingMaterialServiceTest {
 		Mockito.when(trainingMaterialDao.getTrainingId(1,2)).thenReturn(1);
 		assertEquals(1,trainingMaterialService.getFilesByTrainingId(1,2));
 	}
+	
+	@Test void getVersions() {
+		Mockito.when(trainingMaterialDao.getVersions(1)).thenReturn(list);
+		assertEquals(list,trainingMaterialService.getVersions(1));
+	}
+	
+	
 
 	
 }
